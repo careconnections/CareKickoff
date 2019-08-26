@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModel="clr-namespace:CareConnection.Core.ViewModel;assembly=CareConnection.Core"
+             xmlns:pages="clr-namespace:CareConnection.Core.Pages;assembly=CareConnection.Core"
+             xmlns:controls="clr-namespace:CareConnection.Core.Controls"
+             x:TypeArguments="viewModel:ClientViewModel"
+             x:Class="CareConnection.Core.View.Client.ClientListPage">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <Label Grid.Row="0" Margin="20" Text="Client List" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
+                <ListView x:Name="listviewClients" Grid.Row="1" Header="" HorizontalOptions="FillAndExpand" Footer="" HasUnevenRows="True" ItemsSource="{Binding AuthorizedClients}" ItemSelected="ListviewClients_ItemSelected">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="#8ebc11" HeightRequest="50">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <Label Text="First Name" Grid.Column="0" HorizontalOptions="CenterAndExpand" TextColor="White" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="Last Name" Grid.Column="1" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="Gender" Grid.Column="2" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="Date Of Birth" Grid.Column="3" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ExtendedViewCell SelectedBackgroundColor="LightGray" Height="50">
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding FirstName}" Margin="25,0,0,0" Grid.Column="0" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding LastName}" Margin="25,0,0,0" Grid.Column="1" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                        <Image Source="{Binding Gender}" Grid.Column="2" HeightRequest="22" WidthRequest="22" VerticalOptions="Center"/>
+                                        <Label Text="{Binding BirthDate, StringFormat='{0:d-MM-yyyy}'}" Grid.Column="3" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </controls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0,0,0,20">
+                    <Button x:Name="displayReport" Text="Report" Clicked="Display_Report" IsEnabled="False" HeightRequest="40" VerticalOptions="CenterAndExpand" WidthRequest="150" BorderRadius="8" TextColor="#FFFFFF" BackgroundColor="#8ebc11" FontSize="12"/>
+                    <Button x:Name="carePlan" Text="Care Plans" Clicked="Display_Care_Plans" IsEnabled="False" HeightRequest="40" VerticalOptions="CenterAndExpand" WidthRequest="150" Margin="10,0,0,0" BorderRadius="8" TextColor="#FFFFFF" BackgroundColor="#8ebc11" FontSize="12"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</pages:BaseContentPage>

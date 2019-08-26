@@ -1,0 +1,86 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Providers\**" />
+    <Compile Remove="Provider\**" />
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Providers\**" />
+    <EmbeddedResource Remove="Provider\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Providers\**" />
+    <None Remove="Provider\**" />
+    <None Remove="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="careplans.json" />
+    <None Remove="clients.json" />
+    <None Remove="DataFiles\careplans.json" />
+    <None Remove="DataFiles\clients.json" />
+    <None Remove="DataFiles\employees.json" />
+    <None Remove="DataFiles\reports.json" />
+    <None Remove="employees.json" />
+    <None Remove="reports.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="DataFiles\careplans.json" />
+    <EmbeddedResource Include="DataFiles\clients.json" />
+    <EmbeddedResource Include="DataFiles\employees.json" />
+    <EmbeddedResource Include="DataFiles\reports.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="View\Authentication\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Client\CarePlanPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Client\ClientListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Client\ReportPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\Authentication\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\Client\CarePlanPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\Client\ClientListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="View\Client\ReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\" />
+  </ItemGroup>
+</Project>

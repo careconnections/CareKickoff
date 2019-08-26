@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:CareConnection.Core.ViewModel;assembly=CareConnection.Core"
+             xmlns:pages="clr-namespace:CareConnection.Core.Pages;assembly=CareConnection.Core"
+             x:TypeArguments="viewModel:EmployeeViewModel"
+             xmlns:converters="clr-namespace:CareConnection.Core.Converters"
+             xmlns:controls="clr-namespace:CareConnection.Core.Controls"
+             x:Class="CareConnection.Core.View.Authentication.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IntToStringConverter x:Key="IntToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Source="logo.png" HorizontalOptions="Center"/>
+            <Label Text="Welcome to CareConnections" FontSize="16" TextColor="#8ebc11" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0"/>
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Margin="20">
+                <controls:CustomEntry Text="{Binding EmployeeID, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" TextColor="Black" FontSize="16" Placeholder="Employee ID" MaxLength="10" Keyboard="Numeric" HeightRequest="42" Margin="0, 0, 0, 12"/>
+            </StackLayout>
+            <Button Text="Sign in" HorizontalOptions="CenterAndExpand" Command="{Binding LoginCommand}" CommandParameter="ProcessLogin" Clicked="SignIn_Clicked" HeightRequest="45" WidthRequest="120" BorderRadius="8" TextColor="#FFFFFF" BackgroundColor="#8ebc11" FontSize="16"/>
+            <Label x:Name="errormessage" HorizontalOptions="CenterAndExpand" FontSize="16" TextColor="Black"/>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BaseContentPage>

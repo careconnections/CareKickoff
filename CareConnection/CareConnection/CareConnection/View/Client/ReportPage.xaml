@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:CareConnection.Core.ViewModel;assembly=CareConnection.Core"
+             xmlns:pages="clr-namespace:CareConnection.Core.Pages;assembly=CareConnection.Core"
+             xmlns:converters="clr-namespace:CareConnection.Core.Converters"
+             x:TypeArguments="viewModel:ReportViewModel"
+             x:Class="CareConnection.Core.View.Client.ReportPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ReversedBooleanConverter x:Key="ReversedBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Margin="20">
+            <Label IsVisible="{Binding ErrorReportAvailable}" HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" TextColor="Black" Text="Report Unavailable"/>
+            <StackLayout Orientation="Vertical" IsVisible="{Binding ErrorReportAvailable, Converter={StaticResource ReversedBooleanConverter}}">
+                <Label Text="Subject - " TextColor="#8ebc11" FontSize="16" HorizontalOptions="Start" FontAttributes="Bold"/>
+                <Label Text="{Binding Report.Subject}" FontSize="16" TextColor="Black" HorizontalOptions="Start"/>
+                <Label Text="Description - " TextColor="#8ebc11" FontSize="16" HorizontalOptions="Start" FontAttributes="Bold"/>
+                <Label Text="{Binding Report.Text}" FontSize="16" TextColor="Black" HorizontalOptions="Start"/>
+                <Label Text="Created By - " TextColor="#8ebc11" FontSize="16" HorizontalOptions="Start" FontAttributes="Bold"/>
+                <Label Text="{Binding Report.CreatedBy}" FontSize="16" TextColor="Black" HorizontalOptions="Start"/>
+                <Label Text="Created At - " TextColor="#8ebc11" FontSize="16" HorizontalOptions="Start" FontAttributes="Bold"/>
+                <Label Text="{Binding Report.CreatedAt, StringFormat='{0:d-MM-yyyy}'}" FontSize="16" TextColor="Black" HorizontalOptions="Start"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BaseContentPage>

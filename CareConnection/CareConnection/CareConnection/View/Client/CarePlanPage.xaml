@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:CareConnection.Core.ViewModel;assembly=CareConnection.Core"
+             xmlns:pages="clr-namespace:CareConnection.Core.Pages;assembly=CareConnection.Core"
+             x:TypeArguments="viewModel:CarePlanViewModel"
+             x:Class="CareConnection.Core.View.Client.CarePlanPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Display Name - " FontSize="16" FontAttributes="Bold" TextColor="#8ebc11" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding CarePlan.DisplayName}" FontSize="16" TextColor="Black" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <Label Text="Goals - " FontSize="16" FontAttributes="Bold" TextColor="#8ebc11" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+            <ListView x:Name="listviewClients" Grid.Row="1" HorizontalOptions="StartAndExpand" HasUnevenRows="True" ItemsSource="{Binding CarePlan.Goals}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="50">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding DisplayName}" Grid.Column="0" TextColor="Black" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:BaseContentPage>
