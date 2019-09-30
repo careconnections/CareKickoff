@@ -1,7 +1,7 @@
 # The CareConnections Kickoff Assignment
 
 ## Description
-I started with modeling the domain and went from there. For the persistence features i used EF Core and the SQLite provider. This so the project can easily be started. I hardcoded a initial seed to speed things up.
+I started with modeling the domain and went from there. For the persistence features i used EF Core and the SQLite provider. This so the project can easily be started. I hardcoded an initial seed to speed things up.
 
 ---
 ## Functionality
@@ -27,7 +27,7 @@ You should be presented with Swagger after this, where you can test the API. Use
 ## Notes
 - I did not implement the complete structure provided in the json files, but i think the different types of relations are present.
 
-- The unit tests are very basic CRUD tests, this to save time. I would probably not use the database seed as the initial state, as this can be confusing in the state the database is in.
+- The unit tests are very basic CRUD tests, this to save time. I would probably not use the database seed as the initial state, as this can cause confusion about the state the database is in.
 
 - The database context for the unit tests is simply removed before/after every test at this moment. Obviously it would be better to use transactions, an in-memory database or mock the dependencies.
 
