@@ -31,7 +31,7 @@ namespace CareKickoff.Api.Authentication {
                     new Claim(ClaimTypes.Name, apiKey.ToString())
                 };
 
-                var identity = new ClaimsIdentity(claims, Options.AuthenticationType);
+                var identity = new ClaimsIdentity(claims, ApiKeyAuthenticationOptions.AuthenticationType);
                 var identities = new List<ClaimsIdentity> {identity};
                 var principal = new ClaimsPrincipal(identities);
                 var ticket = new AuthenticationTicket(principal, ApiKeyAuthenticationOptions.Scheme);
