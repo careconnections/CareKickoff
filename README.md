@@ -1,18 +1,34 @@
 # The CareConnections Kickoff Assignment
 
-Welcome to the CareConnections Kickoff. What does this mean?
- 
-In the Data folder of this repository you will find JSON files with client data. These are obviously fake clients with fake data. The basic premise if what we would like you to do, is **create an application that displays this data**.
+## Description
+I started with modeling the domain and went from there. For the persistence features i used EF Core and the SQLite provider. This so the project can easily be started. I hardcoded an initial seed to speed things up.
 
-There is a lot of freedom in this exercise, where you can choose which parts of the application you find most important. What do you want the application to look like? Do you include security issues, and if so how? Will you deal with authorization of who is actually allowed to access the client files? It's all up to you.
+---
+## Functionality
+- Employee
+- Client
+- Authorization
+- Careplan
+- ~~Goals~~
+- ~~Reports~~
 
-The data includes several fake employee accounts with a list of which clients they are authorized to access their data. Clients each have careplans, reports, as well as general information to be displayed. Whichever parts of these data you end up choosing to utilize is your own choice.
+---
+## Instructions
+1) Clone the repository.
+2) Run the CareKickoff.Api project.
 
-Use whatever technologies you want to show off. At CareConnections we use C# and MSSql on the Azure platform. We create our mobile applications with Xamarin, the APIs with SignalR and .NET Core. But do you prefer creating a web application, or native apps with Flutter and a Python-based API, or even a WebAssembly web application? Go for it. We believe good developers can adapt to whatever technology they are interested in.
+You should be presented with Swagger after this, where you can test the API. Use one of the provided API keys to mock a logged-in state for a specific user.
 
-We are not expecting you to create a fully-fledged Electronic Client File application, so choose wisely which parts of such a solution you want to focus on. Create what you feel shows off your programming skills best, and then send in a Pull Request. You will then be invited for an interview with two Developers in which you can discuss your choices with them.
+- Sander - DAE89B8D-5E8D-46D2-8449-EB74BA928A4B
+- Peter - E1B500C6-69C0-4AFC-9729-03C526827E33
+- Chris - 56D27A3E-D2EC-41C6-B6A7-301743948CB8
 
-Good luck, and most importantly, have fun!
+---
+## Notes
+- I did not implement the complete structure provided in the json files, but i think the different types of relations are present.
 
+- The unit tests are very basic CRUD tests, this to save time. I would probably not use the database seed as the initial state, as this can cause confusion about the state the database is in.
 
+- The database context for the unit tests is simply removed before/after every test at this moment. Obviously it would be better to use transactions, an in-memory database or mock the dependencies.
 
+- Authentication is limited to hardcoded API keys, just to enable calling the API in an employee context. This saved time but an api key is totally irrelevent for this use case. Luckily, it's easy enough to replace as it's a custom `AuthenticationHandler` implementation.
