@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using CareKickoff.Api.Authentication;
+using CareKickoff.Domain.Interfaces.Repositories;
+using CareKickoff.Infrastructure.Services;
 using CareKickoff.Persistence;
+using CareKickoff.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +24,14 @@ namespace CareKickoff.Api {
         public void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            
+            services.AddTransient(typeof(IEmployeeRepository), typeof(EmployeeRepository));
+            services.AddTransient(typeof(IClientRepository), typeof(ClientRepository));
+            services.AddTransient(typeof(IAuthorizationRepository), typeof(AuthorizationRepository));
+            
+            services.AddTransient(typeof(EmployeeService), typeof(EmployeeService));
+            services.AddTransient(typeof(ClientService), typeof(ClientService));
+            services.AddTransient(typeof(AuthorizationService), typeof(AuthorizationService));
 
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());

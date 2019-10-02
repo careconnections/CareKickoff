@@ -2,9 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 using CareKickoff.Domain.Entities;
-using CareKickoff.Infrastructure.Factories;
 using CareKickoff.Infrastructure.Services;
-using CareKickoff.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,8 +12,8 @@ namespace CareKickoff.Api.Controllers {
     public class ClientController : ControllerBase {
         private readonly EmployeeService _employeeService;
         
-        public ClientController(ApplicationDbContext ctx) {
-            _employeeService = EmployeeServiceFactory.Create(ctx);
+        public ClientController(EmployeeService employeeService) {
+            _employeeService = employeeService;
         }
         
         // GET api/client
