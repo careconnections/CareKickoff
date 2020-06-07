@@ -1,16 +1,32 @@
-﻿<Properties StartupConfiguration="{F4F2AE1B-7710-4320-849F-492B66FB860F}|Default">
-  <MonoDevelop.Ide.ItemProperties.CareKickOff.Android FirstBuild="True" PreferredExecutionTarget="Android.Pixel_2_API_29" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../.nuget/packages/xamarin.essentials/1.5.3.2/readme.txt">
+﻿<Properties StartupConfiguration="{AB2301F8-1B11-442F-A6B1-738412F971D3}|Default">
+  <MonoDevelop.Ide.ItemProperties.CareKickOff.Android PreferredExecutionTarget="Android.Pixel_2_API_29" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CareKickOff/App.xaml.cs">
     <Files>
-      <File FileName="../../../.nuget/packages/xamarin.essentials/1.5.3.2/readme.txt" Line="1" Column="1" />
+      <File FileName="CareKickOff/Pages/MainPage.xaml" Line="2" Column="16" />
+      <File FileName="CareKickOff/NotifyPropertyChanged.cs" Line="1" Column="1" />
+      <File FileName="CareKickOff/ViewModels/ViewModel.cs" Line="1" Column="1" />
+      <File FileName="CareKickOff/ViewModels/Interfaces/IViewModel.cs" Line="8" Column="14" />
+      <File FileName="CareKickOff/Pages/BasePage.cs" Line="1" Column="1" />
+      <File FileName="CareKickOff/Pages/MainPage.xaml.cs" Line="13" Column="45" />
+      <File FileName="CareKickOff/DependencyModule.cs" Line="68" Column="48" />
+      <File FileName="CareKickOff/ViewModels/MainPageViewModel.cs" Line="10" Column="28" />
+      <File FileName="CareKickOff/App.xaml.cs" Line="13" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="CareKickOff" expanded="True" selected="True">
+          <Node name="CareKickOff" expanded="True">
             <Node name="CareKickOff" expanded="True">
-              <Node name="Dependencies" expanded="True" />
+              <Node name="Pages" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
+              <Node name="ViewModels" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
+              <Node name="App.xaml.cs" selected="True" />
             </Node>
+            <Node name="CareKickOff.Android" expanded="True" />
+            <Node name="CareKickOff.iOS" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -23,5 +39,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.CareKickOff FirstBuild="True" />
 </Properties>

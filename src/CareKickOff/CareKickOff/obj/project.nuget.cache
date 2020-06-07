@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "rxCxR+UVbXPFmKOpxK7FI6uDRcJ36iFEZjkibf0n7FnJFNTZ1ynjlkXIewjh8RH4ereUgJT6bVFWA+bAwNcKOg==",
+  "dgSpecHash": "QR/DU3QxaHLjTQp75DC798Ye1hKFm7dt7o8O6cyZ/j1Mjh3qc80WLLoMK8ZGh24390k1vTt3n989FhcDd72IKA==",
   "success": true,
   "projectFilePath": "/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/CareKickOff.csproj",
   "expectedPackageFiles": [
+    "/Users/woutervanderhauw/.nuget/packages/autofac/5.2.0/autofac.5.2.0.nupkg.sha512",
+    "/Users/woutervanderhauw/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.0/microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
     "/Users/woutervanderhauw/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/woutervanderhauw/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.2/system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "/Users/woutervanderhauw/.nuget/packages/system.threading.tasks.extensions/4.5.2/system.threading.tasks.extensions.4.5.2.nupkg.sha512",
     "/Users/woutervanderhauw/.nuget/packages/xamarin.essentials/1.5.3.2/xamarin.essentials.1.5.3.2.nupkg.sha512",
     "/Users/woutervanderhauw/.nuget/packages/xamarin.forms/4.6.0.847/xamarin.forms.4.6.0.847.nupkg.sha512"
   ],
