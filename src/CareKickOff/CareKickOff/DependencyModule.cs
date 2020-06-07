@@ -15,7 +15,9 @@ namespace CareKickOff
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-
+            RegisterCoreServices(builder);
+            RegisterPages(builder);
+            RegisterViewModels(builder);
 
         }
 

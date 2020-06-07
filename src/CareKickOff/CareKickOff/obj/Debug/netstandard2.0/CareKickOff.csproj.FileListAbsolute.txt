@@ -1,0 +1,13 @@
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/bin/Debug/netstandard2.0/CareKickOff.deps.json
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/bin/Debug/netstandard2.0/CareKickOff.dll
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/bin/Debug/netstandard2.0/ref/CareKickOff.dll
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/bin/Debug/netstandard2.0/CareKickOff.pdb
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/App.xaml.g.cs
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/Pages/MainPage.xaml.g.cs
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/CareKickOff.AssemblyInfoInputs.cache
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/CareKickOff.AssemblyInfo.cs
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/CareKickOff.csproj.CoreCompileInputs.cache
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/XamlC.stamp
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/CareKickOff.dll
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/ref/CareKickOff.dll
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff/obj/Debug/netstandard2.0/CareKickOff.pdb
