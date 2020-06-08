@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CareKickOff.Pages.LoginPage"
+             xmlns:local="clr-namespace:CareKickOff.Pages;assembly=CareKickOff"
+             xmlns:viewModels="clr-namespace:CareKickOff.ViewModels;assembly=CareKickOff"
+             x:TypeArguments="viewModels:LoginViewModel">
+    <ContentPage.Content>
+        <StackLayout Margin="20,80,20,0"
+                     VerticalOptions="StartAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <Label Text="Gebruikernaam" TextColor="{StaticResource PrimaryColor}"/>
+            <Entry Placeholder="input 1,2,3" Keyboard="Numeric"/>
+            <Label Text="Wachtwoord" Margin="0,10,0,0" TextColor="{StaticResource PrimaryColor}"/>
+            <Entry Text="Password" Keyboard="Default" ReturnCommand="{Binding Login}"/>
+
+            <Button Text="Log in"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="60"
+                    Margin="20,60,20,0"
+                    CornerRadius="30"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    TextColor="{StaticResource WhiteColor}"
+                    Command="{Binding Login}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</local:BasePage>

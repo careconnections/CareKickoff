@@ -22,7 +22,7 @@ namespace CareKickOff
         {
             var scope = AppContainer.Container.BeginLifetimeScope();
             var navigationService = scope.Resolve<INavigationService>();
-            Task.Run(() => navigationService.Navigate<MainPage>(Enums.PagePresentationEnum.NoStackNavigation));
+            Task.Run(() => navigationService.Navigate<LoginPage>(Enums.PagePresentationEnum.NoStackNavigation));
         }
 
         protected override void OnSleep()

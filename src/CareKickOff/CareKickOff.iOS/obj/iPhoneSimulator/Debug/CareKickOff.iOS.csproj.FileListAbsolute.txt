@@ -2,6 +2,7 @@
 /Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff.iOS/bin/iPhoneSimulator/Debug/CareKickOff.iOS.pdb
 /Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff.iOS/bin/iPhoneSimulator/Debug/Autofac.dll
 /Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff.iOS/bin/iPhoneSimulator/Debug/Autofac.pdb
+/Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff.iOS/bin/iPhoneSimulator/Debug/Newtonsoft.Json.dll
 /Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff.iOS/bin/iPhoneSimulator/Debug/Xamarin.Essentials.dll
 /Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff.iOS/bin/iPhoneSimulator/Debug/Xamarin.Essentials.pdb
 /Users/woutervanderhauw/CareKickoff/src/CareKickOff/CareKickOff.iOS/bin/iPhoneSimulator/Debug/Xamarin.Forms.Core.dll
