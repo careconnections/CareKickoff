@@ -7,9 +7,28 @@
              mc:Ignorable="d"
              x:Class="CareKickOff.Pages.MainPage"
              xmlns:viewModels="clr-namespace:CareKickOff.ViewModels;assembly=CareKickOff"
-             x:TypeArguments="viewModels:MainPageViewModel">
+             x:TypeArguments="viewModels:MainPageViewModel"
+              Title="{Binding Title}">
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="{Binding BeginText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <ListView ItemsSource="{Binding Clients}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="100">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding FirstName}" Grid.Column="0"/>
+                            <Label Text="{Binding LastName}" Grid.Column="1"/>
+                            <Label Text="{Binding BirthDate, StringFormat='{0:MMMM dd, yyyy}'}"  Grid.Column="2"/>
+                            <Label Text="{Binding Gender}" Grid.Column="3"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </local:BasePage>

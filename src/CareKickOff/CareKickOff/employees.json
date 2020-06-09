@@ -1,0 +1,3 @@
+[{"Name":"Sander","EmployeeId":"1","AuthorizedClients":["1","2","4"]},
+{"Name":"Peter","EmployeeId":"2","AuthorizedClients":["2","3"]},
+{"Name":"Chris","EmployeeId":"3","AuthorizedClients":["3","4","5"]}]

@@ -26,4 +26,16 @@
     <Folder Include="Enums\" />
     <Folder Include="Models \" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="careplans.json" />
+    <None Remove="clients.json" />
+    <None Remove="employees.json" />
+    <None Remove="reports.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="careplans.json" />
+    <EmbeddedResource Include="clients.json" />
+    <EmbeddedResource Include="employees.json" />
+    <EmbeddedResource Include="reports.json" />
+  </ItemGroup>
 </Project>
