@@ -6,14 +6,18 @@ namespace CareKickOff.Services
 {
     public class BasicAuthenticationService : IBasicAuthenticationService
     {
-        public static string UserName;
         public BasicAuthenticationService()
         {
         }
 
-        public async Task<bool> Login(string username)
+        public bool Login(int username, string password)
         {
-            return true;
+            if(username == 1 || username == 2 || username == 3)
+            {
+                Config.Username = username;
+                return true;
+            }
+            return false;
         }
     }
 }

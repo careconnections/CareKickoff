@@ -5,6 +5,6 @@ namespace CareKickOff.Services.Interfaces
 {
     public interface IBasicAuthenticationService
     {
-        Task<bool> Login(string username);
+        bool Login(int username, string password);
     }
 }
