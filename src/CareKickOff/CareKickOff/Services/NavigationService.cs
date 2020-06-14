@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using CareKickOff.Enums;
@@ -77,5 +78,16 @@ namespace CareKickOff.Services
             return Task.FromResult(true);
         }
 
+        public Task Navigate<TPage, TParameter>(TParameter parameter, PagePresentationEnum presentationEnum = PagePresentationEnum.AddToStackNavigation) where TPage : IPage<IViewModel>
+        {
+            var page = AppContainer.Container.Resolve<TPage>();
+
+            if(page.ViewModel is IParameterViewModel<TParameter> parameterViewModel)
+            {
+                parameterViewModel.SetParameter(parameter);
+            }
+
+            return Navigate(page, presentationEnum);
+        }
     }
 }

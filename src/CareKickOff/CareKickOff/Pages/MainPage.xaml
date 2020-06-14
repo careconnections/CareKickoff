@@ -8,10 +8,10 @@
              x:Class="CareKickOff.Pages.MainPage"
              xmlns:viewModels="clr-namespace:CareKickOff.ViewModels;assembly=CareKickOff"
              x:TypeArguments="viewModels:MainPageViewModel"
-                
-              Title="{Binding Title}">
+             Title="{Binding Title}">
     <StackLayout>
-        <ListView ItemsSource="{Binding Clients}">
+        <ListView ItemsSource="{Binding Clients}"
+                  SelectedItem="{Binding SelectedClient}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
