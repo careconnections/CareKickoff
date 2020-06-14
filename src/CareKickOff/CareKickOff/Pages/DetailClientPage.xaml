@@ -6,6 +6,31 @@
              xmlns:viewModels="clr-namespace:CareKickOff.ViewModels;assembly=CareKickOff"
              x:TypeArguments="viewModels:DetailClientViewModel">
     <ContentPage.Content>
-        <Label Text="hoi"/>
+        <ListView ItemsSource="{Binding Reports}" RowHeight="200">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding Subject}" Grid.Column="0" Grid.Row="0"/>
+                            <Label Text="{Binding Text}" Grid.Column="1" Grid.RowSpan="2" HorizontalTextAlignment="Start"/>
+                            <Label Text="{Binding HasPriority}" Grid.Column="0" Grid.Row="1"/>
+                            <Label Text="{Binding CreatedAt, StringFormat='{0:MMMM dd, yyyy}'}"  Grid.Column="3" Grid.Row="1"/>
+                            <Label Text="{Binding CreatedBy}" Grid.Column="3" Grid.Row="0"/>
+                            <Label Text="{Binding CarePlanGoalId, StringFormat='CarePlainGoalId: {0:N}'}" Grid.Column="2" Grid.Row="0"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </local:BasePage>

@@ -48,5 +48,18 @@ namespace CareKickOff.Services
             }
             
         }
+
+        public ObservableCollection<Report> GetReportsOfClient(long clientNumber)
+        {
+            string jsonFileName = "reports.json";
+            var assembly = typeof(MainPage).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonFileName}");
+            using (var reader = new StreamReader(stream))
+            {
+                string json = reader.ReadToEnd();
+                var items = JsonConvert.DeserializeObject<ObservableCollection<Report>>(json);
+                return new ObservableCollection<Report>(items.Where(c => c.ClientId == clientNumber).OrderBy(c => c.CreatedAt));
+            }
+        }
     }
 }
