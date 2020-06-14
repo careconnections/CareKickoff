@@ -16,6 +16,7 @@ namespace CareKickOff.Pages
             : base(viewModel)
         {
             InitializeComponent();
+            
         }
     }
 }

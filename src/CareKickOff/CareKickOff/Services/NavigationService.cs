@@ -69,6 +69,7 @@ namespace CareKickOff.Services
 
         private Task NavigateNewNavigationPage(Page page)
         {
+
             Device.BeginInvokeOnMainThread(
                 () => Application.Current.MainPage = new NavigationPage(page)
             );

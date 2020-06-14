@@ -5,6 +5,13 @@
     x:Class="CareKickOff.BaseStyles">
 
     <Color x:Key="PrimaryColor">#82b026</Color>
-    <Color x:Key="WhiteColor">#FFFFFF</Color>
+    <Color x:Key="WhiteColor">#FFFFFF</Color>    
+    <Color x:Key="PrimaryTitleColor">#FFFFFF</Color>
 
+
+    <!-- Title bar color set-->
+    <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
+           <Setter Property="BarBackgroundColor" Value="{StaticResource Key=PrimaryColor}"/>
+           <Setter Property="BarTextColor" Value="{StaticResource Key=PrimaryTitleColor}"/>
+    </Style>
 </ResourceDictionary>
