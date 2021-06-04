@@ -1,0 +1,60 @@
+﻿@model CareKickoff.Models.ViewModel
+
+<div>
+    <h4>Client data</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.BirthDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.BirthDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client.NativeId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Client.NativeId)
+        </dd>
+    </dl>
+    <h5>Careplans</h5>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Goals</th>
+        </tr>
+        @foreach (CareplanModel careplan in Model.Careplans)
+        {
+            <tr>
+                <td>@careplan.Id</td>
+                <td>@careplan.DisplayName</td>
+                <td>
+                    @foreach (Goal goal in careplan.Goals)
+                    {
+                    <div>@goal.DisplayName</div>
+                    }
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>
