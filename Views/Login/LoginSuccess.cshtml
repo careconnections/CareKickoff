@@ -1,0 +1,36 @@
+﻿@model CareKickoff.Models.EmployeeModel
+
+<div>
+    <h4>Login successful!</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+
+
+<form asp-controller="Clients" asp-action="Index">
+    <div class="form-group">
+        <input asp-for="IsAuthorized" type="hidden" value="true">
+    </div>
+    <select asp-for="SelectedClientId" asp-items="@new SelectList(Model.AuthorizedClients)">
+        <option>Authorized Clients</option>
+    </select>
+    <div>
+        <input type="submit" value="View client data" class="btn btn-primary" />
+    </div>
+</form>
+<div>
+    <a asp-controller="Login" asp-action="Index">Back to Login page</a>
+</div>
