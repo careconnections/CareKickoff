@@ -20,7 +20,7 @@ services:
             - ./api/:/home/node/app
         ports:
             - 3001:3001
-        command: node index.js
+        command: yarn dev
         depends_on:
             - "mongodb"
 

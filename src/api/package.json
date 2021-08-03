@@ -4,7 +4,10 @@
   "main": "lib/main.js",
   "license": "MIT",
   "dependencies": {
+    "@hapi/basic": "^6.0.0",
     "@hapi/hapi": "^20.1.5",
+    "@types/hapi__basic": "^5.1.2",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0"
   },
   "scripts": {
@@ -13,6 +16,7 @@
     "dev": "run-p dev:*"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/hapi__hapi": "^20.0.9",
     "@types/node": "^16.4.7",
     "nodemon": "^2.0.12",

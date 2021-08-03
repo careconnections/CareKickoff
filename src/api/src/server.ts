@@ -1,22 +1,33 @@
 "use strict";
 
-import { config } from "dotenv";
-import Hapi from "@hapi/hapi";
-import { Server } from "@hapi/hapi";
+import * as Hapi from "@hapi/hapi";
+import * as dotenv from "dotenv";
 
-config();
+import basic from "@hapi/basic";
 
-export let server: Server;
+import { validate } from "./auth";
 
-export const init = async function (): Promise<Server> {
+dotenv.config();
+
+export let server: Hapi.Server;
+
+export const init = async function (): Promise<Hapi.Server> {
 	server = Hapi.server({
 		port: process.env.PORT,
 		host: "0.0.0.0",
 	});
 
+	await server.register(basic);
+
+	server.auth.strategy("simple", "basic", { validate });
+	server.auth.default("simple");
+
 	server.route({
 		method: "GET",
 		path: "/",
+		options: {
+			auth: "simple",
+		},
 		handler: (request, h) => "Hello World!",
 	});
 
