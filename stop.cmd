@@ -1,1 +1,0 @@
-cd ./src && docker-compose down
