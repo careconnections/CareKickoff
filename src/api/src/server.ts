@@ -1,17 +1,15 @@
 "use strict";
 
 import * as Hapi from "@hapi/hapi";
-import * as dotenv from "dotenv";
+import * as routes from "./routes";
 
 import basic from "@hapi/basic";
 
 import { validate } from "./auth";
 
-dotenv.config();
-
 export let server: Hapi.Server;
 
-export const init = async function (): Promise<Hapi.Server> {
+export const start = async function () {
 	server = Hapi.server({
 		port: process.env.PORT,
 		host: "0.0.0.0",
@@ -22,21 +20,11 @@ export const init = async function (): Promise<Hapi.Server> {
 	server.auth.strategy("simple", "basic", { validate });
 	server.auth.default("simple");
 
-	server.route({
-		method: "GET",
-		path: "/",
-		options: {
-			auth: "simple",
-		},
-		handler: (request, h) => "Hello World!",
-	});
+	server.route(routes.allRoutes);
 
-	return server;
-};
+	await server.start();
 
-export const start = async function (): Promise<void> {
 	console.log(`Listening on ${server.settings.host}:${server.settings.port}`);
-	return server.start();
 };
 
 process.on("unhandledRejection", (err) => {

@@ -1,3 +1,7 @@
-import { init, start } from "./server";
+import * as server from "./server";
+import * as database from "./mongodb";
 
-init().then(() => start());
+database
+	.start()
+	.then(() => server.start())
+	.catch((err) => console.log(err));
