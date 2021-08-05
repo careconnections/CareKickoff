@@ -2,10 +2,7 @@
 
 import * as Hapi from "@hapi/hapi";
 import * as routes from "./routes";
-
-import basic from "@hapi/basic";
-
-import { validate } from "./auth";
+import * as auth from "./auth";
 
 export let server: Hapi.Server;
 
@@ -15,10 +12,7 @@ export const start = async function () {
 		host: "0.0.0.0",
 	});
 
-	await server.register(basic);
-
-	server.auth.strategy("simple", "basic", { validate });
-	server.auth.default("simple");
+	await auth.init(server);
 
 	server.route(routes.allRoutes);
 
