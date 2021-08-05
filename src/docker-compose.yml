@@ -8,7 +8,7 @@ services:
             - ./client/:/home/node/app
         ports:
             - ${CLIENT_PORT}:3000
-        command: yarn dev
+        command: bash -c "yarn install && yarn dev"
         depends_on:
             - "mongodb"
 
@@ -20,7 +20,7 @@ services:
             - ./api/:/home/node/app
         ports:
             - ${API_PORT}:3001
-        command: yarn dev
+        command: bash -c "yarn install && yarn dev"
         depends_on:
             - "mongodb"
 
