@@ -1,15 +1,37 @@
 "use strict";
 
 import * as Hapi from "@hapi/hapi";
+
 import * as Models from "./models";
 
-import basicAuth from "@hapi/basic";
+export const init = async (server: Hapi.Server) => {
+	await server.register(require("@hapi/cookie"));
+	server.auth.strategy("session", "cookie", validateCookie);
+	server.auth.default("session");
+};
 
-export async function init(server: Hapi.Server) {
-	await server.register(basicAuth);
-	server.auth.strategy("simple", "basic", { validate });
-	server.auth.default("simple");
-}
+const validateCookie: any = {
+	cookie: {
+		name: "careConnections",
+		password: "superSecretsuperSecretsuperSecret",
+		isSecure: false,
+	},
+
+	redirectTo: "/login",
+
+	validateFunc: async (request: Hapi.Request, session: any) => {
+		const employee: Models.Employee | null =
+			await Models.EmployeesModel.findOne({
+				_id: session.id,
+			});
+
+		if (!employee) {
+			return { valid: false };
+		}
+
+		return { valid: true, credentials: employee };
+	},
+};
 
 const validate = async (request: Hapi.Request) => {
 	request.log("error", "Event auth");

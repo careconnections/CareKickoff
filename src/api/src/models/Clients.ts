@@ -1,15 +1,22 @@
+import { ObjectId } from "mongodb";
 import { Schema, model } from "mongoose";
 
 interface Client {
-	Name: string;
-	ClientId: string;
-	AuthorizedClients: Array<string>;
+	_id: ObjectId;
+	FirstName: string;
+	LastName: string;
+	BirthDate: string;
+	Gender: string;
+	NativeId: string;
 }
 
 const schema = new Schema<Client>({
-	Name: { type: String, required: true },
-	ClientId: { type: String, required: true },
-	AuthorizedClients: { type: Array, required: true },
+	_id: { type: ObjectId, required: true },
+	FirstName: { type: String, required: true },
+	LastName: { type: String, required: true },
+	BirthDate: { type: String, required: true },
+	Gender: { type: String, required: true },
+	NativeId: { type: String, required: true },
 });
 
 export const ClientsModel = model<Client>("client", schema);

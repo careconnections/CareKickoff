@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/basic": "^6.0.0",
+    "@hapi/cookie": "^11.0.2",
     "@hapi/hapi": "^20.1.5",
     "@types/hapi__basic": "^5.1.2",
     "bcryptjs": "^2.4.3",
