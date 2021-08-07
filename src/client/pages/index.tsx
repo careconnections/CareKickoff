@@ -26,36 +26,27 @@ export default function Home() {
 
 		const username: string = e.currentTarget.username.value;
 
-		const headers: Headers = new Headers({
-			Authorization:
-				"Basic " +
-				Buffer.from(`${username}:password`).toString("base64"),
-		});
-
 		const request: RequestInit = {
-			method: "GET",
-			headers,
+			method: "POST",
+			body: JSON.stringify({ username }),
 		};
 
-		const HandleLogin = (response: Response): void => {
-			if (response.ok) {
-				router.push("/clients");
-			} else {
-				if (username)
-					enqueueSnackbar(`Employee  ${username}  does not exist`, {
-						...defaultSnackbarOptions,
-						variant: "error",
-					});
-				else
-					enqueueSnackbar(`Please enter a employee name`, {
-						...defaultSnackbarOptions,
-						variant: "warning",
-					});
-			}
-		};
+		console.log(request.body);
 
-		await fetch("http://localhost:3001/", request)
-			.then(HandleLogin)
+		await fetch("http://localhost:3001/login", request)
+			.then((response: Response): Promise<string> => {
+				if (response.ok) {
+					router.push("/portal");
+				}
+
+				return response.text();
+			})
+			.then((message: string) => {
+				enqueueSnackbar(message, {
+					...defaultSnackbarOptions,
+					variant: "info",
+				});
+			})
 			.catch((err) => {
 				enqueueSnackbar(err.message, {
 					...defaultSnackbarOptions,
