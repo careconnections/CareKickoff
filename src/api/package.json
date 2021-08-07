@@ -9,6 +9,7 @@
     "@types/hapi__basic": "^5.1.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
+    "hapi-modern-cors": "^1.1.0",
     "hapi-mongodb": "^10.0.0",
     "mongodb": "^4.0.1",
     "mongoose": "^5.13.5",

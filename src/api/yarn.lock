@@ -852,6 +852,11 @@ graceful-fs@^4.1.2:
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.6.tgz"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
+hapi-modern-cors@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/hapi-modern-cors/-/hapi-modern-cors-1.1.0.tgz#7a63e549258163d07c154b0edd6a4238c5e9613c"
+  integrity sha512-v1fhMtOpi9OkLPNZWfxxOaljbII1bExzIoO0jxTYEjes1Kk4v2cBowc9h0pSMGjhOGpD/XLbwpWHDXMMm1bp7Q==
+
 hapi-mongodb@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/hapi-mongodb/-/hapi-mongodb-10.0.0.tgz#d717f2d59aaa2c7d6efcb58aafa52d0a9fe6ba06"

@@ -8,6 +8,7 @@ export let server: Hapi.Server;
 
 export const start = async function () {
 	server = Hapi.server({
+		debug: { request: ["*"], log: ["*"] },
 		port: process.env.PORT,
 		host: "0.0.0.0",
 	});
@@ -15,6 +16,11 @@ export const start = async function () {
 	await auth.init(server);
 
 	server.route(routes.allRoutes);
+
+	await server.register({
+		plugin: require("hapi-modern-cors"),
+		options: {},
+	});
 
 	await server.start();
 

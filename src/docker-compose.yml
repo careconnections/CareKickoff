@@ -1,26 +1,31 @@
 version: "3"
+
 services:
     client:
-        image: node:16
+        build: ./client
         container_name: Care-Connections-Client
-        working_dir: /home/node/app
+        working_dir: /usr/src/app
         volumes:
-            - ./client/:/home/node/app
+            - ./client/:/usr/src/app
+            - /usr/src/app/node_modules
         ports:
             - ${CLIENT_PORT}:3000
-        command: bash -c "yarn install && yarn dev"
+        command: yarn dev
+        restart: always
         depends_on:
             - "mongodb"
 
     api:
-        image: node:16
+        build: ./api
         container_name: Care-Connections-API
-        working_dir: /home/node/app
+        working_dir: /usr/src/app
         volumes:
-            - ./api/:/home/node/app
+            - ./api/:/usr/src/app
+            - /usr/src/app/node_modules
         ports:
-            - ${API_PORT}:3001
-        command: bash -c "yarn install && yarn dev"
+            - ${API_PORT}:3000
+        command: yarn dev
+        restart: always
         depends_on:
             - "mongodb"
 
@@ -34,11 +39,11 @@ services:
             - MONGO_INITDB_ROOT_PASSWORD=admin
             - MONGO_INITDB_DATABASE=${DATABASE_NAME}
         volumes:
-            - D:\Projects\Programmas\CareKickoff\init.js:/docker-entrypoint-initdb.d/init.js:ro
             - D:\Projects\Programmas\CareKickoff\Data:/init/
-            - mongo-data:/data/db
+            - D:\Projects\Programmas\CareKickoff\src\init.js:/docker-entrypoint-initdb.d/init.js:ro
+            - database:/data/db
         command: [--auth]
-        restart: on-failure
+        restart: always
 
     mongo-express:
         container_name: Mongo-Express
@@ -56,5 +61,5 @@ services:
             - "mongodb"
 
 volumes:
-    mongo-data:
+    database:
         driver: local
