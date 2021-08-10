@@ -2,16 +2,40 @@ import * as hapi from "@hapi/hapi";
 
 import * as models from "../models";
 
-export const auth = [
-	{
-		method: "POST",
+export const auth: Array<hapi.ServerRoute> = [
+	/* 	{
+		method: "GET",
 		path: "/login",
 		options: {
 			auth: {
 				mode: "try",
 			},
+			plugins: {
+				"hapi-auth-cookie": {
+					redirectTo: false,
+				},
+			},
 			handler: async (request: any, h: hapi.ResponseToolkit) => {
-				const { username } = request.payload;
+				request.log(`GET login :${JSON.stringify(request.auth)}`);
+				if (request.auth.isAuthenticated) {
+					return h.response("").code(200);
+				} else {
+					return h.response("Not logged in anymore").code(401);
+				}
+			},
+		},
+	}, */
+	{
+		method: "POST",
+		path: "/login",
+		options: {
+			/* 	auth: {
+				mode: "try",
+			}, */
+			handler: async (request: any, h: hapi.ResponseToolkit) => {
+				const { username } = JSON.parse(request.payload);
+
+				request.log(`POST login : ${username}`);
 
 				if (!username) {
 					return h.response("No username").code(401);
@@ -28,18 +52,28 @@ export const auth = [
 						.code(401);
 				}
 
-				request.cookieAuth.set({ id: employee._id });
-				return h.response("Successfully logged in").code(200);
+				// request.cookieAuth.set({ id: employee._id });
+				request.log(`POST login : ${employee._id}`);
+				return h
+					.response({
+						message: "Successfully logged in",
+						id: employee._id,
+					})
+					.type("application/json")
+					.code(200);
 			},
 		},
 	},
 	{
-		method: "GET",
+		method: "POST",
 		path: "/logout",
 		options: {
+			/* 			auth: {
+				mode: "try",
+			}, */
 			handler: (request: any, h: hapi.ResponseToolkit) => {
-				request.cookieAuth.clear();
-				return h.response("Successfully logged out").code(200);
+				// request.cookieAuth.clear();
+				return h.response({ message : "Successfully logged out" }).type("application/json");
 			},
 		},
 	},

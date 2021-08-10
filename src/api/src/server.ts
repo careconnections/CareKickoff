@@ -13,13 +13,16 @@ export const start = async function () {
 		host: "0.0.0.0",
 	});
 
-	await auth.init(server);
+	// await auth.init(server);
 
 	server.route(routes.allRoutes);
 
 	await server.register({
 		plugin: require("hapi-modern-cors"),
-		options: {},
+		options: {
+			allowCreds: true,
+			overrideOrigin: "http://localhost:3000",
+		},
 	});
 
 	await server.start();

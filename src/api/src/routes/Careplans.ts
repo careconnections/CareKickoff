@@ -1,9 +1,13 @@
 "use strict";
 
+import { CareplansModel } from "../models";
+
 export const careplans = {
 	method: "GET",
-	path: "/careplans",
-	handler: async (request: any, h: any) => {
-		return "Careplans";
+	path: "/careplans/{id}",
+	options: {
+		handler: async (request: any, h: any) => {
+			return CareplansModel.find({ ClientId: request.params.id });
+		},
 	},
 };

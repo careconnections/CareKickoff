@@ -12,12 +12,11 @@ export const init = async (server: Hapi.Server) => {
 
 const validateCookie: any = {
 	cookie: {
-		name: "careConnections",
+		name: "sid_care_connections",
 		password: "superSecretsuperSecretsuperSecret",
 		isSecure: false,
+		isSameSite: "Lax",
 	},
-
-	redirectTo: "/login",
 
 	validateFunc: async (request: Hapi.Request, session: any) => {
 		const employee: Models.Employee | null =
@@ -27,33 +26,8 @@ const validateCookie: any = {
 
 		if (!employee) {
 			return { valid: false };
+		} else {
+			return { valid: true, credentials: employee };
 		}
-
-		return { valid: true, credentials: employee };
 	},
-};
-
-const validate = async (request: Hapi.Request) => {
-	request.log("error", "Event auth");
-
-	const authorization = Buffer.from(
-		request.headers.authorization.split(" ")[1],
-		"base64"
-	)
-		.toString()
-		.split(":");
-
-	const employee: Models.Employee | null =
-		await Models.EmployeesModel.findOne({
-			Name: authorization[0],
-		});
-
-	const credentials = employee
-		? { id: employee._id.toHexString(), name: employee.Name }
-		: null;
-
-	return {
-		credentials,
-		isValid: employee,
-	};
 };
