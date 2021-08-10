@@ -39,7 +39,7 @@ export default function Home() {
 
 						if (response.ok) {
 							window.sessionStorage.setItem("id", json.id);
-							router.push("/Portal");
+							router.push("/portal");
 						}
 					})
 			)

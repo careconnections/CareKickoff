@@ -12,7 +12,7 @@ import {
 	CarePlansList,
 	ClientList,
 } from "../components";
-import { useReports, useEmployee, useClients, useCarePlans } from "../hooks/";
+import { useReports, useEmployee, useClients, useCarePlans } from "../hooks";
 
 export default function Portal() {
 	const classes = usePortalStyles();
