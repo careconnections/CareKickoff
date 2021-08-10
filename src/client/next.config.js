@@ -7,4 +7,7 @@ module.exports = {
     return config
   },
   reactStrictMode: true,
+  env: {
+    API: process.env.API,
+  }
 }

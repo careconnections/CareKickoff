@@ -2,11 +2,11 @@ version: "3"
 
 services:
     client:
-        build: ./client
+        build: ./src/client
         container_name: Care-Connections-Client
         working_dir: /usr/src/app
         volumes:
-            - ./client/:/usr/src/app
+            - ./src/client/:/usr/src/app
             - /usr/src/app/node_modules
         ports:
             - ${CLIENT_PORT}:3000
@@ -16,11 +16,11 @@ services:
             - "mongodb"
 
     api:
-        build: ./api
+        build: ./src/api
         container_name: Care-Connections-API
         working_dir: /usr/src/app
         volumes:
-            - ./api/:/usr/src/app
+            - ./src/api/:/usr/src/app
             - /usr/src/app/node_modules
         ports:
             - ${API_PORT}:3000
@@ -39,8 +39,8 @@ services:
             - MONGO_INITDB_ROOT_PASSWORD=admin
             - MONGO_INITDB_DATABASE=${DATABASE_NAME}
         volumes:
-            - D:\Projects\Programmas\CareKickoff\Data:/init/
-            - D:\Projects\Programmas\CareKickoff\src\init.js:/docker-entrypoint-initdb.d/init.js:ro
+            - ./Data:/init/
+            - ./src/init.js:/docker-entrypoint-initdb.d/init.js:ro
             - database:/data/db
         command: [--auth]
         restart: always

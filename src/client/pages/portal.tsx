@@ -1,79 +1,95 @@
-import {
-	Typography,
-	List,
-	ListItem,
-	IconButton,
-	ListItemSecondaryAction,
-	Card,
-	CardActions,
-	CardContent,
-	Grid,
-	Box,
-	Divider,
-	Button,
-	Modal,
-	Fade,
-	Backdrop,
-	Paper,
-	Fab,
-	Tooltip,
-} from "@material-ui/core";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import ErrorIcon from "@material-ui/icons/Error";
-import { useRouter } from "next/dist/client/router";
-import Head from "next/head";
-import Image from "next/image";
+import { Typography, Card, Grid, makeStyles } from "@material-ui/core";
 import HomeStyle from "../styles/Home.module.css";
-import ClientStyle from "../styles/Clients.module.css";
 import { theme } from "../styles/theme";
-import useFetch from "react-fetch-hook";
 import { useState } from "react";
-import { employees, clients, rapports, careplans } from "./data";
 import { useEffect } from "react";
 import { ClientList } from "./ClientList";
+import { CarePlan, Client, Employee, Report } from "./Types";
+import { LogoutFab } from "./LogoutFab";
+import { Footer } from "./Footer";
+import { Head } from "./Head";
+import { ClientHeader } from "./ClientHeader";
+import { ReportsList } from "./ReportsList";
+import { CarePlansList } from "./CarePlansList";
+
+const usePortalStyles = makeStyles({
+	overflowFlex: {
+		flex: " 1 0 auto",
+		minHeight: 0,
+		height: "100%",
+		overflowX: "hidden",
+		overflowY: "auto",
+		margin: `${theme.spacing(2)}px 0px`,
+		width: "100%",
+	},
+});
 
 export default function Portal() {
-	const router = useRouter();
+	const classes = usePortalStyles();
 
-	const toClient = () => router.push("/client");
+	const [employee, setEmployee] = useState<Employee>();
+	useEffect(() => {
+		fetch(
+			`${process.env.API}/employee/${window.sessionStorage.getItem("id")}`
+		)
+			.then((response: Response): Promise<Employee> => response.json())
+			.then((employee: Employee) => setEmployee(employee))
+			.catch((err: TypeError) => console.log(err));
+	}, []);
 
-	// const { isLoading, data } = useFetch("http://localhost:3001/employee");
+	const [employeeClients, setEmployeeClients] = useState<Array<Client>>();
+	useEffect(() => {
+		if (!employee) return;
 
-	const employee = employees.find((e) => e.Name === "Sander");
+		console.log(employee);
 
-	const employeeClients = clients.filter((c) =>
-		employee?.AuthorizedClients.includes(c.NativeId)
-	);
+		fetch(
+			`${process.env.API}/clients/${JSON.stringify(
+				employee.AuthorizedClients
+			)}`
+		)
+			.then(
+				(response: Response): Promise<Array<Client>> => response.json()
+			)
+			.then((clients: Array<Client>) => setEmployeeClients(clients))
+			.catch((err: TypeError) => console.log(err));
+	}, [employee]);
 
-	const [clientRapports, setClientRapports] = useState<object>();
+	const [selectedClient, setSelectedClient] = useState<Client>();
 
-	const [selectedClient, setSelectedClient] = useState<object>(() => {
-		setClientRapports(
-			rapports.filter((r) => r.ClientId === employeeClients[0].NativeId)
-		);
-		return employeeClients[0];
-	});
+	const [clientReports, setClientReports] = useState<Array<Report>>();
 
-	const [selectedCarePlans, setSelectedCarePlans] = useState<Array<object>>();
+	const [selectedCarePlans, setSelectedCarePlans] =
+		useState<Array<CarePlan>>();
 
 	useEffect(() => {
-		if (!clientRapports) return;
+		if (!selectedClient) return;
 
-		const clientCarePlans = careplans.filter(
-			(c) => c.ClientId === selectedClient.NativeId
-		);
+		fetch(`${process.env.API}/reports/${selectedClient.NativeId}`)
+			.then(
+				(response: Response): Promise<Array<Report>> => response.json()
+			)
+			.then((clients: Array<Report>) => {
+				console.log(clients);
+				setClientReports(clients);
+			})
+			.catch((err: TypeError) => console.log(err));
 
-		setSelectedCarePlans(clientCarePlans);
-	}, [clientRapports, selectedClient]);
+		fetch(`${process.env.API}/careplans/${selectedClient.NativeId}`)
+			.then(
+				(response: Response): Promise<Array<CarePlan>> =>
+					response.json()
+			)
+			.then((clients: Array<CarePlan>) => {
+				console.log(clients);
+				setSelectedCarePlans(clients);
+			})
+			.catch((err: TypeError) => console.log(err));
+	}, [selectedClient]);
 
 	return (
 		<div className={HomeStyle.container}>
-			<Head>
-				<title>Care connections kick off</title>
-				<meta name="description" content="Care connections kick off" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+			<Head />
 
 			<main
 				className={HomeStyle.main}
@@ -83,7 +99,6 @@ export default function Portal() {
 					width: 960,
 					height: "100vh",
 					flexDirection: "column",
-					alignItems: "center",
 					paddingLeft: 10,
 					paddingRight: 10,
 					paddingBottom: 0,
@@ -94,7 +109,7 @@ export default function Portal() {
 					Portal
 				</Typography>
 				<Typography variant="h3" gutterBottom>
-					{`${employee.Name}'s clients`}
+					{`${employee?.Name}'s clients`}
 				</Typography>
 				<Grid
 					container
@@ -113,12 +128,25 @@ export default function Portal() {
 						xs={3}
 						style={{ display: "flex", maxHeight: "100%" }}
 					>
-						<ClientList
-							employeeClients={employeeClients}
-							setSelectedClient={setSelectedClient}
-							setClientRapports={setClientRapports}
-							selectedClient={selectedClient}
-						/>
+						<Card elevation={4}>
+							{employeeClients ? (
+								<ClientList
+									employeeClients={employeeClients}
+									onChange={(clientId: string) => {
+										setSelectedClient(() =>
+											employeeClients.find(
+												(client: Client) =>
+													client.NativeId === clientId
+											)
+										);
+									}}
+								/>
+							) : (
+								<Typography variant="body1">
+									No clients
+								</Typography>
+							)}
+						</Card>
 					</Grid>
 					<Grid
 						item
@@ -127,7 +155,7 @@ export default function Portal() {
 					>
 						<Card
 							elevation={4}
-							style={{ padding: theme.spacing(4) }}
+							style={{ padding: theme.spacing(4), width: "100%" }}
 						>
 							<Grid
 								container
@@ -136,31 +164,12 @@ export default function Portal() {
 									minHeight: 0,
 									flex: "0 1 100%",
 									height: "100%",
-									flexWrap: "noWrap",
+									flexWrap: "nowrap",
 								}}
 							>
-								<Grid item>
-									<Typography variant="h4" gutterBottom>
-										{`${selectedClient.FirstName} ${selectedClient.LastName}'s info`}
-									</Typography>
-								</Grid>
-								<Grid item>
-									<Typography
-										variant="subtitle1"
-										gutterBottom
-									>
-										{`${
-											selectedClient.Gender
-										} - age ${CalculateAge(
-											new Date(
-												Date.parse(
-													selectedClient.BirthDate
-												)
-											)
-										)}`}
-									</Typography>
-									<Divider />
-								</Grid>
+								{selectedClient && (
+									<ClientHeader client={selectedClient} />
+								)}
 								<Grid
 									item
 									style={{
@@ -172,7 +181,7 @@ export default function Portal() {
 								>
 									<Grid
 										container
-										direction="row"
+										direction="column"
 										justifyContent="space-between"
 										alignItems="flex-start"
 										style={{ gap: theme.spacing(2) }}
@@ -180,98 +189,22 @@ export default function Portal() {
 										<Grid
 											item
 											xs={6}
-											style={{
-												flex: " 1 0 auto",
-												minHeight: 0,
-												height: "100%",
-												overflowX: "hidden",
-												overflowY: "auto",
-												margin: `${theme.spacing(
-													2
-												)}px 0px`,
-											}}
+											className={classes.overflowFlex}
 										>
 											<Typography
 												variant="h5"
 												gutterBottom
 											>
-												Rapports
+												Reports
 											</Typography>
-											<List
-												dense
-												className={ClientStyle.list}
-												style={{ maxWidth: "100%" }}
-											>
-												{clientRapports &&
-													clientRapports.map(
-														(rapport, i) => (
-															<ListItem
-																key={i}
-																divider
-																style={{
-																	alignItems:
-																		"flex-start",
-																	flexDirection:
-																		"column",
-																}}
-															>
-																{rapport.HasPriority && (
-																	<ErrorIcon
-																		style={{
-																			position:
-																				"absolute",
-																			top: 0,
-																			right: 0,
-																			margin: theme.spacing(
-																				1
-																			),
-																			fill: "red",
-																		}}
-																	/>
-																)}
-																<Typography variant="h6">
-																	{
-																		rapport.Subject
-																	}
-																</Typography>
-																<Typography
-																	variant="subtitle2"
-																	gutterBottom
-																>
-																	{`Created by ${
-																		rapport.CreatedBy
-																	} on ${
-																		rapport.CreatedAt.split(
-																			"T"
-																		)[0]
-																	}`}
-																</Typography>
-																<Typography
-																	variant="body1"
-																	gutterBottom
-																>
-																	{
-																		rapport.Text
-																	}
-																</Typography>
-															</ListItem>
-														)
-													)}
-											</List>
+											<ReportsList
+												clientReports={clientReports}
+											/>
 										</Grid>
 										<Grid
 											item
 											xs={6}
-											style={{
-												flex: " 1 0 auto",
-												minHeight: 0,
-												height: "100%",
-												overflowX: "hidden",
-												overflowY: "auto",
-												margin: `${theme.spacing(
-													2
-												)}px 0px`,
-											}}
+											className={classes.overflowFlex}
 										>
 											<Typography
 												variant="h5"
@@ -279,55 +212,11 @@ export default function Portal() {
 											>
 												Care Plans
 											</Typography>
-											<List>
-												{selectedCarePlans?.map(
-													(c, i) => (
-														<ListItem
-															alignItems="flex-start"
-															key={i}
-															style={{
-																flexDirection:
-																	"column",
-															}}
-															divider={
-																selectedCarePlans.length >
-																1
-															}
-														>
-															<Typography
-																variant="h6"
-																gutterBottom
-															>
-																{c.DisplayName}
-															</Typography>
-															<List dense>
-																<Typography
-																	variant="body1"
-																	gutterBottom
-																>
-																	Goals
-																</Typography>
-																{c.Goals.map(
-																	(g, i) => (
-																		<ListItem
-																			key={
-																				i
-																			}
-																			disableGutters
-																		>
-																			<Typography variant="body2">
-																				{
-																					g.DisplayName
-																				}
-																			</Typography>
-																		</ListItem>
-																	)
-																)}
-															</List>
-														</ListItem>
-													)
-												)}
-											</List>
+											<CarePlansList
+												selectedCarePlans={
+													selectedCarePlans
+												}
+											/>
 										</Grid>
 									</Grid>
 								</Grid>
@@ -335,47 +224,9 @@ export default function Portal() {
 						</Card>
 					</Grid>
 				</Grid>
-				<Tooltip title="Logout">
-					<Fab
-						style={{
-							position: "absolute",
-							bottom: theme.spacing(9),
-							right: theme.spacing(8),
-							backgroundColor: theme.palette.primary.main,
-							color: theme.palette.getContrastText(
-								theme.palette.primary.main
-							),
-						}}
-						onClick={() => router.push("/")}
-					>
-						<ExitToAppIcon />
-					</Fab>
-				</Tooltip>
+				<LogoutFab />
 			</main>
-
-			<footer className={HomeStyle.footer}>
-				<a
-					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Powered by{" "}
-					<span className={HomeStyle.logo}>
-						<Image
-							src="/vercel.svg"
-							alt="Vercel Logo"
-							width={72}
-							height={16}
-						/>
-					</span>
-				</a>
-			</footer>
+			<Footer />
 		</div>
 	);
 }
-
-const CalculateAge = (birthday: Date): number => {
-	let ageInMilliseconds = Date.now() - birthday.getTime();
-	let ageAsDate = new Date(ageInMilliseconds);
-	return Math.abs(ageAsDate.getUTCFullYear() - 1970);
-};

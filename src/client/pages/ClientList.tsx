@@ -4,59 +4,61 @@ import {
 	ListItemAvatar,
 	Avatar,
 	ListItemText,
-	Card,
+	makeStyles,
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
+import { FunctionComponent, useState } from "react";
 import ClientStyle from "../styles/Clients.module.css";
 import { theme } from "../styles/theme";
-import { clients, rapports } from "./data";
+import { ClientListProps } from "./Types";
+import { useEffect } from "react";
 
-export function ClientList({
+const useClientListStyles = makeStyles({
+	list: {
+		overflowY: "auto",
+		height: "100%",
+		padding: 0,
+	},
+	avatar: {
+		color: theme.palette.getContrastText(theme.palette.primary.main),
+		backgroundColor: theme.palette.primary.main,
+	},
+});
+
+const ClientList: FunctionComponent<ClientListProps> = ({
 	employeeClients,
-	setSelectedClient,
-	setClientRapports,
-	selectedClient,
-}) {
+	onChange,
+}) => {
+	const classes = useClientListStyles();
+
+	const [selectedClient, setSelectedClient] = useState<string>(
+		employeeClients[0].NativeId
+	);
+
+	useEffect(() => {
+		onChange(selectedClient);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const handleChange = (id: string): void => {
+		onChange(id);
+		setSelectedClient(id);
+	};
+
 	return (
-		<Card elevation={4}>
-			<List
-				dense
-				className={ClientStyle.list}
-				style={{
-					overflowY: "auto",
-					height: "100%",
-					padding: 0,
-				}}
-			>
-				{employeeClients.map((client, i) => (
+		<List dense className={[ClientStyle.list, classes.list]}>
+			{employeeClients &&
+				employeeClients.map((client, i) => (
 					<ListItem
 						key={i}
 						divider
 						button
 						id={client.NativeId}
-						onClick={() => {
-							setSelectedClient(
-								clients.find(
-									(c) => c.NativeId === client.NativeId
-								)
-							);
-							setClientRapports(() =>
-								rapports.filter(
-									(r) => r.ClientId === client.NativeId
-								)
-							);
-						}}
-						selected={client.NativeId === selectedClient.NativeId}
+						onClick={() => handleChange(client.NativeId)}
+						selected={client.NativeId === selectedClient}
 					>
 						<ListItemAvatar>
-							<Avatar
-								style={{
-									color: theme.palette.getContrastText(
-										theme.palette.primary.main
-									),
-									backgroundColor: theme.palette.primary.main,
-								}}
-							>
+							<Avatar className={classes.avatar}>
 								<PersonIcon />
 							</Avatar>
 						</ListItemAvatar>
@@ -66,7 +68,8 @@ export function ClientList({
 						/>
 					</ListItem>
 				))}
-			</List>
-		</Card>
+		</List>
 	);
-}
+};
+
+export { ClientList };

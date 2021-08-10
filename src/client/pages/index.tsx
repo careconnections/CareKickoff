@@ -9,12 +9,13 @@ import {
 	Button,
 } from "@material-ui/core";
 import { useRouter } from "next/dist/client/router";
-import Head from "next/head";
-import Image from "next/image";
 import { FormEvent } from "react";
 import styles from "../styles/Home.module.css";
 import { useSnackbar } from "notistack";
 import { defaultSnackbarOptions } from "./defaultSnackbarOptions";
+import { Footer } from "./Footer";
+import { Head } from "./Head";
+import { LoginData } from "./Types";
 
 export default function Home() {
 	const router = useRouter();
@@ -30,22 +31,18 @@ export default function Home() {
 			method: "POST",
 			body: JSON.stringify({ username }),
 		};
+		console.log(process.env.API);
+		await fetch(`${process.env.API}/login`, request)
+			.then((response: Response): Promise<LoginData> => response.json())
+			.then((json: LoginData) => {
+				window.sessionStorage.setItem("id", json.id);
 
-		console.log(request.body);
-
-		await fetch("http://localhost:3001/login", request)
-			.then((response: Response): Promise<string> => {
-				if (response.ok) {
-					router.push("/portal");
-				}
-
-				return response.text();
-			})
-			.then((message: string) => {
-				enqueueSnackbar(message, {
+				enqueueSnackbar(json.message, {
 					...defaultSnackbarOptions,
 					variant: "info",
 				});
+
+				router.push("/Portal");
 			})
 			.catch((err) => {
 				enqueueSnackbar(err.message, {
@@ -57,11 +54,7 @@ export default function Home() {
 
 	return (
 		<div className={styles.container}>
-			<Head>
-				<title>Care connections kick off</title>
-				<meta name="description" content="Care connections kick off" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+			<Head />
 
 			<main className={styles.main}>
 				<Typography variant="h1" gutterBottom>
@@ -110,24 +103,7 @@ export default function Home() {
 					</Box>
 				</Card>
 			</main>
-
-			<footer className={styles.footer}>
-				<a
-					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Powered by{" "}
-					<span className={styles.logo}>
-						<Image
-							src="/vercel.svg"
-							alt="Vercel Logo"
-							width={72}
-							height={16}
-						/>
-					</span>
-				</a>
-			</footer>
+			<Footer />
 		</div>
 	);
 }
