@@ -1,35 +1,21 @@
 import { Typography, List, ListItem } from "@material-ui/core";
 import ErrorIcon from "@material-ui/icons/Error";
-import ClientStyle from "../styles/Clients.module.css";
-import { theme } from "../styles/theme";
 import { FunctionComponent } from "react";
-import { Report } from "./Types";
+import { Report } from "../types/Report";
+import { useReportListStyles } from "../styles";
 
 export const ReportsList: FunctionComponent<{
 	clientReports: Array<Report> | undefined;
 }> = ({ clientReports }) => {
+	const classes = useReportListStyles();
+
 	return (
-		<List dense className={ClientStyle.list} style={{ maxWidth: "100%" }}>
+		<List dense className={classes.listItem}>
 			{clientReports &&
 				clientReports.map((report: Report, i: number) => (
-					<ListItem
-						key={i}
-						divider
-						style={{
-							alignItems: "flex-start",
-							flexDirection: "column",
-						}}
-					>
+					<ListItem key={i} divider className={classes.listItem}>
 						{report.HasPriority && (
-							<ErrorIcon
-								style={{
-									position: "absolute",
-									top: 0,
-									right: 0,
-									margin: theme.spacing(1),
-									fill: "red",
-								}}
-							/>
+							<ErrorIcon className={classes.errorIcon} />
 						)}
 						<Typography variant="h6">{report.Subject}</Typography>
 						<Typography variant="subtitle2" gutterBottom>

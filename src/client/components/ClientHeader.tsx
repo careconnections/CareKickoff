@@ -1,7 +1,7 @@
 import { Typography, Grid, Divider } from "@material-ui/core";
 import { FunctionComponent } from "react";
-import { Client } from "./Types";
-import { CalculateAge } from "./Utilities";
+import { Client } from "../types/Client";
+import { CalculateAge } from "../src/Utilities";
 
 const ClientHeader: FunctionComponent<{ client: Client | undefined }> = ({
 	client,

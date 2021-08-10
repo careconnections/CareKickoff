@@ -1,20 +1,9 @@
-import { Fab, makeStyles, Tooltip } from "@material-ui/core";
-import { ClassNameMap } from "@material-ui/core/styles/withStyles";
+import { Fab, Tooltip } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { NextRouter, useRouter } from "next/dist/client/router";
 import { useSnackbar } from "notistack";
-import { theme } from "../styles/theme";
-import { defaultSnackbarOptions } from "../pages/defaultSnackbarOptions";
-
-const useFabStyles = makeStyles({
-	fab: {
-		position: "absolute",
-		bottom: theme.spacing(9),
-		right: theme.spacing(8),
-		backgroundColor: theme.palette.primary.main,
-		color: theme.palette.getContrastText(theme.palette.primary.main),
-	},
-});
+import { defaultSnackbarOptions } from "../src/DefaultSnackbarOptions";
+import { useFabStyles } from "../styles";
 
 export const LogoutFab = () => {
 	const router: NextRouter = useRouter();

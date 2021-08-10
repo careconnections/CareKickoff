@@ -4,26 +4,12 @@ import {
 	ListItemAvatar,
 	Avatar,
 	ListItemText,
-	makeStyles,
 } from "@material-ui/core";
-import PersonIcon from "@material-ui/icons/Person";
-import { FunctionComponent, useState } from "react";
-import ClientStyle from "../styles/Clients.module.css";
-import { theme } from "../styles/theme";
-import { ClientListProps } from "./Types";
-import { useEffect } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
+import { ClientListProps } from "../types";
 
-const useClientListStyles = makeStyles({
-	list: {
-		overflowY: "auto",
-		height: "100%",
-		padding: 0,
-	},
-	avatar: {
-		color: theme.palette.getContrastText(theme.palette.primary.main),
-		backgroundColor: theme.palette.primary.main,
-	},
-});
+import PersonIcon from "@material-ui/icons/Person";
+import { useClientListStyles } from "../styles";
 
 const ClientList: FunctionComponent<ClientListProps> = ({
 	employeeClients,
@@ -46,7 +32,7 @@ const ClientList: FunctionComponent<ClientListProps> = ({
 	};
 
 	return (
-		<List dense className={[ClientStyle.list, classes.list]}>
+		<List dense className={classes.list}>
 			{employeeClients &&
 				employeeClients.map((client, i) => (
 					<ListItem

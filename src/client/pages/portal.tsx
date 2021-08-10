@@ -1,110 +1,37 @@
-import { Typography, Card, Grid, makeStyles } from "@material-ui/core";
+import { Typography, Card, Grid } from "@material-ui/core";
 import HomeStyle from "../styles/Home.module.css";
-import { theme } from "../styles/theme";
+import { theme, usePortalStyles } from "../styles";
 import { useState } from "react";
-import { useEffect } from "react";
-import { ClientList } from "./ClientList";
-import { CarePlan, Client, Employee, Report } from "./Types";
-import { LogoutFab } from "../components";
-import { Footer } from "./Footer";
-import { Head } from "./Head";
-import { ClientHeader } from "./ClientHeader";
-import { ReportsList } from "./ReportsList";
-import { CarePlansList } from "./CarePlansList";
-
-const usePortalStyles = makeStyles({
-	overflowFlex: {
-		flex: " 1 0 auto",
-		minHeight: 0,
-		height: "100%",
-		overflowX: "hidden",
-		overflowY: "auto",
-		margin: `${theme.spacing(2)}px 0px`,
-		width: "100%",
-	},
-});
+import { Client } from "../types";
+import {
+	LogoutFab,
+	Footer,
+	Head,
+	ClientHeader,
+	ReportsList,
+	CarePlansList,
+	ClientList,
+} from "../components";
+import { useReports, useEmployee, useClients, useCarePlans } from "../hooks/";
 
 export default function Portal() {
 	const classes = usePortalStyles();
 
-	const [employee, setEmployee] = useState<Employee>();
-	useEffect(() => {
-		fetch(
-			`${process.env.API}/employee/${window.sessionStorage.getItem("id")}`
-		)
-			.then((response: Response): Promise<Employee> => response.json())
-			.then((employee: Employee) => setEmployee(employee))
-			.catch((err: TypeError) => console.log(err));
-	}, []);
-
-	const [employeeClients, setEmployeeClients] = useState<Array<Client>>();
-	useEffect(() => {
-		if (!employee) return;
-
-		console.log(employee);
-
-		fetch(
-			`${process.env.API}/clients/${JSON.stringify(
-				employee.AuthorizedClients
-			)}`
-		)
-			.then(
-				(response: Response): Promise<Array<Client>> => response.json()
-			)
-			.then((clients: Array<Client>) => setEmployeeClients(clients))
-			.catch((err: TypeError) => console.log(err));
-	}, [employee]);
-
 	const [selectedClient, setSelectedClient] = useState<Client>();
 
-	const [clientReports, setClientReports] = useState<Array<Report>>();
+	const [employee] = useEmployee(window.sessionStorage.getItem("id"));
 
-	const [selectedCarePlans, setSelectedCarePlans] =
-		useState<Array<CarePlan>>();
+	const [employeeClients] = useClients(employee);
 
-	useEffect(() => {
-		if (!selectedClient) return;
+	const [clientReports] = useReports(selectedClient);
 
-		fetch(`${process.env.API}/reports/${selectedClient.NativeId}`)
-			.then(
-				(response: Response): Promise<Array<Report>> => response.json()
-			)
-			.then((clients: Array<Report>) => {
-				console.log(clients);
-				setClientReports(clients);
-			})
-			.catch((err: TypeError) => console.log(err));
-
-		fetch(`${process.env.API}/careplans/${selectedClient.NativeId}`)
-			.then(
-				(response: Response): Promise<Array<CarePlan>> =>
-					response.json()
-			)
-			.then((clients: Array<CarePlan>) => {
-				console.log(clients);
-				setSelectedCarePlans(clients);
-			})
-			.catch((err: TypeError) => console.log(err));
-	}, [selectedClient]);
+	const [selectedCarePlans] = useCarePlans(selectedClient);
 
 	return (
 		<div className={HomeStyle.container}>
 			<Head />
 
-			<main
-				className={HomeStyle.main}
-				style={{
-					minHeight: 0,
-					overflow: "hidden",
-					width: 960,
-					height: "100vh",
-					flexDirection: "column",
-					paddingLeft: 10,
-					paddingRight: 10,
-					paddingBottom: 0,
-					alignItems: "flex-start",
-				}}
-			>
+			<main className={`${HomeStyle.main} ${classes.main}`}>
 				<Typography variant="h1" gutterBottom>
 					Portal
 				</Typography>
@@ -117,11 +44,7 @@ export default function Portal() {
 					direction="row"
 					justifyContent="center"
 					alignItems="stretch"
-					style={{
-						minHeight: 0,
-						marginBottom: theme.spacing(2),
-						flex: "1 1 auto",
-					}}
+					className={classes.viewGridContainer}
 				>
 					<Grid
 						item

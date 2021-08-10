@@ -1,10 +1,10 @@
 import { Typography, List, ListItem } from "@material-ui/core";
 import { FunctionComponent } from "react";
-import { CarePlan, Goal } from "./Types";
+import { Goal, CarePlan } from "../types";
 
-export const CarePlansList: FunctionComponent<
-	{ selectedCarePlans: Array<CarePlan> } | undefined
-> = ({ selectedCarePlans }) => {
+export const CarePlansList: FunctionComponent<{
+	selectedCarePlans: Array<CarePlan>;
+}> = ({ selectedCarePlans }) => {
 	return (
 		<List>
 			{selectedCarePlans &&
