@@ -1,6 +1,6 @@
 import * as hapi from "@hapi/hapi";
 
-import * as models from "../models";
+import { Employee, EmployeesModel } from "../models";
 
 export const auth: Array<hapi.ServerRoute> = [
 	/* 	{
@@ -35,25 +35,29 @@ export const auth: Array<hapi.ServerRoute> = [
 			handler: async (request: any, h: hapi.ResponseToolkit) => {
 				const { username } = JSON.parse(request.payload);
 
-				request.log(`POST login : ${username}`);
-
 				if (!username) {
-					return h.response("No username").code(401);
+					return h
+						.response({
+							message: "No username",
+						})
+						.type("application/json")
+						.code(401);
 				}
 
-				const employee: models.Employee | null =
-					await models.EmployeesModel.findOne({
-						Name: username,
-					});
+				const employee: Employee | null = await EmployeesModel.findOne({
+					Name: username,
+				});
 
 				if (!employee) {
 					return h
-						.response("No employee with that username")
+						.response({
+							message: "No employee with that username",
+						})
+						.type("application/json")
 						.code(401);
 				}
 
 				// request.cookieAuth.set({ id: employee._id });
-				request.log(`POST login : ${employee._id}`);
 				return h
 					.response({
 						message: "Successfully logged in",
@@ -73,7 +77,9 @@ export const auth: Array<hapi.ServerRoute> = [
 			}, */
 			handler: (request: any, h: hapi.ResponseToolkit) => {
 				// request.cookieAuth.clear();
-				return h.response({ message : "Successfully logged out" }).type("application/json");
+				return h
+					.response({ message: "Successfully logged out" })
+					.type("application/json");
 			},
 		},
 	},

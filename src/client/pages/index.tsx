@@ -4,9 +4,6 @@ import {
 	Box,
 	CardContent,
 	CardActions,
-	Grid,
-	TextField,
-	Button,
 } from "@material-ui/core";
 import { useRouter } from "next/dist/client/router";
 import { FormEvent } from "react";
@@ -16,6 +13,7 @@ import { defaultSnackbarOptions } from "./defaultSnackbarOptions";
 import { Footer } from "./Footer";
 import { Head } from "./Head";
 import { LoginData } from "./Types";
+import { LoginForm } from "../components";
 
 export default function Home() {
 	const router = useRouter();
@@ -27,23 +25,24 @@ export default function Home() {
 
 		const username: string = e.currentTarget.username.value;
 
-		const request: RequestInit = {
+		await fetch(`${process.env.API}/login`, {
 			method: "POST",
 			body: JSON.stringify({ username }),
-		};
-		console.log(process.env.API);
-		await fetch(`${process.env.API}/login`, request)
-			.then((response: Response): Promise<LoginData> => response.json())
-			.then((json: LoginData) => {
-				window.sessionStorage.setItem("id", json.id);
+		})
+			.then(
+				(response: Response): Promise<void> =>
+					response.json().then((json: LoginData) => {
+						enqueueSnackbar(json.message, {
+							...defaultSnackbarOptions,
+							variant: "info",
+						});
 
-				enqueueSnackbar(json.message, {
-					...defaultSnackbarOptions,
-					variant: "info",
-				});
-
-				router.push("/Portal");
-			})
+						if (response.ok) {
+							window.sessionStorage.setItem("id", json.id);
+							router.push("/Portal");
+						}
+					})
+			)
 			.catch((err) => {
 				enqueueSnackbar(err.message, {
 					...defaultSnackbarOptions,
@@ -72,33 +71,7 @@ export default function Home() {
 							</Typography>
 						</CardContent>
 						<CardActions>
-							<form onSubmit={onSubmit} method="post">
-								<Grid
-									container
-									spacing={2}
-									justifyContent="flex-end"
-								>
-									<Grid item xs={12}>
-										<TextField
-											fullWidth
-											id="filled-basic"
-											label="Employee name"
-											name="username"
-											variant="filled"
-											color="secondary"
-										/>
-									</Grid>
-									<Grid item>
-										<Button
-											variant="contained"
-											color="primary"
-											type="submit"
-										>
-											Sign in
-										</Button>
-									</Grid>
-								</Grid>
-							</form>
+							<LoginForm onSubmit={onSubmit} />
 						</CardActions>
 					</Box>
 				</Card>

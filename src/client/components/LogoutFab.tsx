@@ -4,7 +4,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { NextRouter, useRouter } from "next/dist/client/router";
 import { useSnackbar } from "notistack";
 import { theme } from "../styles/theme";
-import { defaultSnackbarOptions } from "./defaultSnackbarOptions";
+import { defaultSnackbarOptions } from "../pages/defaultSnackbarOptions";
 
 const useFabStyles = makeStyles({
 	fab: {

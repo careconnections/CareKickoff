@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { ClientList } from "./ClientList";
 import { CarePlan, Client, Employee, Report } from "./Types";
-import { LogoutFab } from "./LogoutFab";
+import { LogoutFab } from "../components";
 import { Footer } from "./Footer";
 import { Head } from "./Head";
 import { ClientHeader } from "./ClientHeader";
