@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.App", "CareConnections.App\CareConnections.App.csproj", "{27816D6D-1603-482E-8D16-F382CEBA8505}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27816D6D-1603-482E-8D16-F382CEBA8505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27816D6D-1603-482E-8D16-F382CEBA8505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27816D6D-1603-482E-8D16-F382CEBA8505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27816D6D-1603-482E-8D16-F382CEBA8505}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D649C4E-7204-43BA-8398-E27269792CDB}
+	EndGlobalSection
+EndGlobal
