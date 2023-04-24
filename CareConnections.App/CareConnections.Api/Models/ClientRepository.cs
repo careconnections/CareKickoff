@@ -9,10 +9,10 @@ namespace CareConnections.Api.Models
         public ClientRepository(AppDbContext appDbContext) => 
             _appDbContext = appDbContext;
 
-        public IList<Client>? GetAllClients() =>
-            _appDbContext?.Clients?.ToList();
+        public IList<Client> GetAllClients() =>
+            _appDbContext.Clients.ToList();
 
-        public Client? GetClientById(int clientId) =>
-            _appDbContext?.Clients?.FirstOrDefault(c => c.ClientId == clientId);
+        public Client GetClientById(int clientId) =>
+            _appDbContext.Clients.FirstOrDefault(c => c.ClientId == clientId);
     }
 }

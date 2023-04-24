@@ -11,7 +11,6 @@ namespace CareConnections.App.Pages
         [Inject]
         public IReportDataService ReportDataService { get; set; } = default!;
 
-
         [Parameter]
         public string ClientId { get; set; } = string.Empty;
 

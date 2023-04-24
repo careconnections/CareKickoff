@@ -1,4 +1,6 @@
 ﻿using CareConnections.Api.Models;
+using CareConnections.Shared.Domain;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CareConnections.Api.Controllers
@@ -15,5 +17,35 @@ namespace CareConnections.Api.Controllers
         [HttpGet]
         public IActionResult GetAllReports() => 
             Ok(_reportRepository.GetAllReports());
+
+        [HttpGet("{id}")]
+        public IActionResult GetReportById(int id) =>
+            Ok(_reportRepository.GetReportById(id));
+
+        [HttpPost]
+        public IActionResult CreateReport([FromBody] Report report)
+        {
+            if (report == null)
+                return BadRequest();
+
+            var createdReport = _reportRepository.AddReport(report);
+
+            return Created("report", createdReport);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteReport(int id)
+        {
+            if (id == 0)
+                return BadRequest();
+
+            var reportToDelete = _reportRepository.GetReportById(id);
+            if (reportToDelete == null)
+                return NotFound();
+
+            _reportRepository.DeleteReport(id);
+
+            return NoContent();
+        }
     }
 }

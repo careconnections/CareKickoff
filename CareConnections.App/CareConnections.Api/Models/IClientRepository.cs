@@ -4,7 +4,7 @@ namespace CareConnections.Api.Models
 {
     public interface IClientRepository
     {
-        IList<Client>? GetAllClients();
-        Client? GetClientById(int clientId);
+        IList<Client> GetAllClients();
+        Client GetClientById(int clientId);
     }
 }
