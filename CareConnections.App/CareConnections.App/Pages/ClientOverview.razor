@@ -1,0 +1,31 @@
+﻿@page "/clientoverview"
+
+<PageTitle>@Title</PageTitle>
+<h2>Client Overview</h2>
+
+@if (Clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th>Client ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Clients)
+            {
+                <tr>
+                    <td>@client.NativeId</td>
+                    <td>@client.FirstName</td>
+                    <td>@client.LastName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
