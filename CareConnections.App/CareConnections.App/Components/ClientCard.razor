@@ -8,7 +8,13 @@
                 <img src="@($"images/{Client.LastName}.jpg")" class="client-img rounded-circle img-fluid" />
             </div>
         </div>
-        <button class="btn btn-primary btn-sm mb-1" @onclick="@(async () => 
-            await ClientDetailsClicked.InvokeAsync(Client))"> Client Details</button>
+        <button class="btn btn-outline-primary btn-sm mb-1"
+                @onclick="@(async () => await ClientDetailsClicked.InvokeAsync(Client))">
+            Client Details
+        </button>
+        <button class="btn btn-outline-primary btn-sm mb-1"
+                @onclick="(() => NavigateToReports(Client))">
+            Reports
+        </button>
     </div>
 </div>

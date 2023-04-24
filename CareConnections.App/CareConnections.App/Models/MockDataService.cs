@@ -5,6 +5,7 @@ namespace CareConnections.App.Models
     public class MockDataService
     {
         private static List<Client>? _clients = default!;
+        private static List<Report>? _reports = default!;
 
         public static List<Client> Clients
         {
@@ -13,6 +14,16 @@ namespace CareConnections.App.Models
                 _clients ??= InitializeMockClients();
 
                 return _clients;
+            }
+        }
+
+        public static List<Report> Reports
+        {
+            get
+            {
+                _reports ??= InitializeMockReports();
+
+                return _reports;
             }
         }
 
@@ -35,6 +46,31 @@ namespace CareConnections.App.Models
                 NativeId = "2"
             };
             return new List<Client>() { c1, c2 };
+        }
+
+        private static List<Report> InitializeMockReports()
+        {
+            var r1 = new Report
+            {
+                Subject = "Subject",
+                Text = "Text",
+                HasPriority = false,
+                CarePlanGoalId = "",
+                ClientId = "1",
+                CreatedBy = "Employee",
+                CreatedAt = DateTime.Now
+            };
+            var r2 = new Report
+            {
+                Subject = "Test123",
+                Text = "Let's see what it looks like for a longer message that contains a lot of blablablablablabla",
+                HasPriority = false,
+                CarePlanGoalId = "1",
+                ClientId = "1",
+                CreatedBy = "Employee2",
+                CreatedAt = DateTime.Now
+            };
+            return new List<Report>() { r1, r2 };
         }
     }
 }

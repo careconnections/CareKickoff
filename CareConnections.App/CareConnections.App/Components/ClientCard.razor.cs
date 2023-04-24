@@ -10,5 +10,11 @@ namespace CareConnections.App.Components
 
         [Parameter]
         public EventCallback<Client> ClientDetailsClicked { get; set; }
+
+        [Inject]
+        public NavigationManager NavigationManager { get; set; } = default!;
+
+        public void NavigateToReports(Client selectedClient) =>
+            NavigationManager.NavigateTo($"/reportoverview/{selectedClient.NativeId}");
     }
 }
