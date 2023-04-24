@@ -9,11 +9,12 @@
 }
 else
 {
+    <ClientDetailsPopup Client="_selectedClient"></ClientDetailsPopup>
     <div class="row">
         @foreach (var client in Clients)
         {
             <div class="col-12 col-sm-12 col-md-1 col-lg-4 col-xl-3">
-                <ClientCard Client="client"></ClientCard>
+                <ClientCard Client="client" ClientDetailsClicked="ShowClientDetailsPopup"></ClientCard>
             </div>
         }
     </div>

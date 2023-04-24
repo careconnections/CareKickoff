@@ -7,11 +7,14 @@ namespace CareConnections.App.Pages
     {
         public IList<Client>? Clients { get; set; } = default!;
 
+        private Client? _selectedClient;
+
         private readonly string Title = "Client Overview";
 
-        protected override void OnInitialized()
-        {
+        protected override void OnInitialized() => 
             Clients = MockDataService.Clients;
-        }
+
+        public void ShowClientDetailsPopup(Client selectedClient) =>
+            _selectedClient = selectedClient;
     }
 }

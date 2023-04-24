@@ -7,5 +7,8 @@ namespace CareConnections.App.Components
     {
         [Parameter]
         public Client Client { get; set; } = default!;
+
+        [Parameter]
+        public EventCallback<Client> ClientDetailsClicked { get; set; }
     }
 }
