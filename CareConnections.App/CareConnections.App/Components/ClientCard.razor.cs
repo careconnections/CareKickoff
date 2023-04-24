@@ -15,6 +15,6 @@ namespace CareConnections.App.Components
         public NavigationManager NavigationManager { get; set; } = default!;
 
         public void NavigateToReports(Client selectedClient) =>
-            NavigationManager.NavigateTo($"/reportoverview/{selectedClient.NativeId}");
+            NavigationManager.NavigateTo($"/reportoverview/{selectedClient.ClientId}");
     }
 }

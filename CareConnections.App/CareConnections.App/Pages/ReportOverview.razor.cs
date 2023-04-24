@@ -15,7 +15,7 @@ namespace CareConnections.App.Pages
         protected override void OnInitialized()
         {
             Client = MockDataService.Clients
-                .First(c => c.NativeId == ClientId);
+                .First(c => c.ClientId == int.Parse(ClientId));
             Reports = MockDataService.Reports
                 .Where(r => r.ClientId == ClientId).ToList();
         }

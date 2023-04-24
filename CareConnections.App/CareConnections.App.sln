@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.App", "Care
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.Shared", "CareConnections.Shared\CareConnections.Shared.csproj", "{0BAB37FD-8419-4E49-9247-78B34768307B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.Api", "CareConnections.Api\CareConnections.Api.csproj", "{B39D5872-6A7C-443F-95BA-27BC596B249A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0BAB37FD-8419-4E49-9247-78B34768307B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BAB37FD-8419-4E49-9247-78B34768307B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BAB37FD-8419-4E49-9247-78B34768307B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B39D5872-6A7C-443F-95BA-27BC596B249A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B39D5872-6A7C-443F-95BA-27BC596B249A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B39D5872-6A7C-443F-95BA-27BC596B249A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B39D5872-6A7C-443F-95BA-27BC596B249A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

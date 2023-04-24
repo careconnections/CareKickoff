@@ -2,6 +2,7 @@
 {
     public class Report
     {
+        public int ReportId { get; set; }
         public string Subject { get; set; } = string.Empty;
         public string Text { get; set; } = string.Empty;
         public bool HasPriority { get; set; }

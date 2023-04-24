@@ -3,6 +3,8 @@
 ################################################################################
 
 /CareConnections.App/.vs
+/CareConnections.App/CareConnections.Api/bin
+/CareConnections.App/CareConnections.Api/obj
 /CareConnections.App/CareConnections.App/bin
 /CareConnections.App/CareConnections.App/obj
 /CareConnections.App/CareConnections.Shared/bin

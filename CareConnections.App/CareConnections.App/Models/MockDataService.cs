@@ -35,7 +35,7 @@ namespace CareConnections.App.Models
                 LastName = "Tester",
                 BirthDate = new DateTime(2023, 4, 24),
                 Gender = Gender.Female,
-                NativeId = "1"
+                ClientId = 1
             };
             var c2 = new Client
             {
@@ -43,7 +43,7 @@ namespace CareConnections.App.Models
                 LastName = "Brouwer",
                 BirthDate = new DateTime(1988, 5, 8),
                 Gender = Gender.Male,
-                NativeId = "2"
+                ClientId = 2
             };
             return new List<Client>() { c1, c2 };
         }
