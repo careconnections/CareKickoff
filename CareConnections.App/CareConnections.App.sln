@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.App", "CareConnections.App\CareConnections.App.csproj", "{27816D6D-1603-482E-8D16-F382CEBA8505}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.Shared", "CareConnections.Shared\CareConnections.Shared.csproj", "{0BAB37FD-8419-4E49-9247-78B34768307B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{27816D6D-1603-482E-8D16-F382CEBA8505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27816D6D-1603-482E-8D16-F382CEBA8505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27816D6D-1603-482E-8D16-F382CEBA8505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BAB37FD-8419-4E49-9247-78B34768307B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BAB37FD-8419-4E49-9247-78B34768307B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BAB37FD-8419-4E49-9247-78B34768307B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BAB37FD-8419-4E49-9247-78B34768307B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
