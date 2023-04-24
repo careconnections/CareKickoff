@@ -6,19 +6,13 @@ namespace CareConnections.Api.Models
     {
         private readonly AppDbContext _appDbContext;
 
-        public ClientRepository(AppDbContext appDbContext)
-        {
+        public ClientRepository(AppDbContext appDbContext) => 
             _appDbContext = appDbContext;
-        }
 
-        public IList<Client> GetAllClients()
-        {
-            return _appDbContext.Clients.ToList();
-        }
+        public IList<Client>? GetAllClients() =>
+            _appDbContext?.Clients?.ToList();
 
-        public Client? GetClientById(string clientId)
-        {
-            return _appDbContext.Clients.FirstOrDefault(c => c.ClientId == int.Parse(clientId));
-        }
+        public Client? GetClientById(int clientId) =>
+            _appDbContext?.Clients?.FirstOrDefault(c => c.ClientId == clientId);
     }
 }

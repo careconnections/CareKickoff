@@ -9,21 +9,15 @@ namespace CareConnections.Api.Controllers
     {
         private readonly IClientRepository _clientRepository;
 
-        public ClientController(IClientRepository clientRepository)
-        {
+        public ClientController(IClientRepository clientRepository) => 
             _clientRepository = clientRepository;
-        }
 
         [HttpGet]
-        public IActionResult GetAllClients()
-        {
-            return Ok(_clientRepository.GetAllClients());
-        }
+        public IActionResult GetAllClients() => 
+            Ok(_clientRepository.GetAllClients());
 
         [HttpGet("{id}")]
-        public IActionResult GetClientById(string id)
-        {
-            return Ok(_clientRepository.GetClientById(id));
-        }
+        public IActionResult GetClientById(int id) =>
+            Ok(_clientRepository.GetClientById(id));
     }
 }

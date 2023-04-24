@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.App", "CareConnections.App\CareConnections.App.csproj", "{27816D6D-1603-482E-8D16-F382CEBA8505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CareConnections.App", "CareConnections.App\CareConnections.App.csproj", "{27816D6D-1603-482E-8D16-F382CEBA8505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.Shared", "CareConnections.Shared\CareConnections.Shared.csproj", "{0BAB37FD-8419-4E49-9247-78B34768307B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CareConnections.Shared", "CareConnections.Shared\CareConnections.Shared.csproj", "{0BAB37FD-8419-4E49-9247-78B34768307B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CareConnections.Api", "CareConnections.Api\CareConnections.Api.csproj", "{B39D5872-6A7C-443F-95BA-27BC596B249A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CareConnections.Api", "CareConnections.Api\CareConnections.Api.csproj", "{B39D5872-6A7C-443F-95BA-27BC596B249A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

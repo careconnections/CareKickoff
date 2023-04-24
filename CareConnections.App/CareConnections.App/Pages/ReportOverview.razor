@@ -1,7 +1,7 @@
 ﻿@page "/ReportOverview/{ClientId}"
 @using CareConnections.App.Components
 
-<h2>Report Overview for @Client.FirstName @Client.LastName</h2>
+<h2>Report Overview for @Client?.FirstName @Client?.LastName</h2>
 
 @if (Reports == null)
 {
@@ -35,5 +35,5 @@ else
 }
 
 <ProfilePicture>
-    <img class="client-img img-fluid rounded-circle" src="@($"images/{Client.LastName}.jpg")" />
+    <img class="client-img img-fluid rounded-circle" src="@($"images/{Client?.LastName}.jpg")" />
 </ProfilePicture>
