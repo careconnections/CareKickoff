@@ -1,0 +1,84 @@
+﻿@using CareConnections.Shared.Domain
+
+@inherits TestContext
+
+@code {
+
+    private Client _client;
+
+    public ClientCardTests()
+    {
+        _client = new Client
+            {
+                ClientId = 1,
+                FirstName = "Test",
+                LastName = "Tester",
+                Gender = Gender.Male,
+                BirthDate = new DateTime(2000, 1, 1),
+            };
+    }
+
+    [Fact]
+    public void RenderCardHeader()
+    {
+        var cut = Render(@<ClientCard Client="_client" />);
+
+        cut
+            .Find("#cardheader")
+            .MarkupMatches(@"
+                <div id=""cardheader"" class=""card-header py-3"">
+                    <h4>Test Tester</h4>
+                </div>");
+    }
+
+    [Fact]
+    public void RenderCardPicture()
+    {
+        var cut = Render(@<ClientCard Client="_client" />);
+
+        cut
+            .Find("#cardpicture")
+            .MarkupMatches(@"
+                <div id=""cardpicture"" class=""mb-3"">
+                    <img src=""images/Tester.jpg"" class=""client-img rounded-circle img-fluid""/>
+                </div>");
+    }
+
+    [Fact]
+    public void RenderCardDetailsButton()
+    {
+        var cut = Render(@<ClientCard Client="_client" />);
+
+        cut
+            .Find("#detailsnavbtn")
+            .MarkupMatches(@"
+                <button id=""detailsnavbtn"" class=""btn btn-outline-primary btn-sm mb-1"">
+                    Client Details
+                </button>");
+    }
+
+    [Fact]
+    public void RenderCardReportsButton()
+    {
+        var cut = Render(@<ClientCard Client="_client" />);
+
+        cut
+            .Find("#reportsnavbtn")
+            .MarkupMatches(@"
+                <button id=""reportsnavbtn"" class=""btn btn-outline-primary btn-sm mb-1"">
+                    Client Reports
+                </button>");
+    }
+
+    [Fact]
+    public void ClickReportsButtonNavigatesToReports()
+    {
+        var cut = Render(@<ClientCard Client="_client" />);
+        var button = cut.Find("#reportsnavbtn");
+
+        button.Click();
+
+        var navMan = Services.GetRequiredService<FakeNavigationManager>();
+        Assert.Equal($"{navMan.BaseUri}reportoverview/1", navMan.Uri);
+    }
+}
