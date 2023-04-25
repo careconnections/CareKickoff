@@ -16,7 +16,6 @@ namespace CareConnections.App.Services
                 (await _httpClient.GetStreamAsync($"api/report"),
                 new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 
-
         public async Task<Report?> AddReportAsync(Report report)
         {
             var reportJson = new StringContent(JsonSerializer.Serialize(report), 

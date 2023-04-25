@@ -14,7 +14,6 @@ namespace CareConnections.App.Pages
         [Inject]
         public AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
         
-
         public IList<Client>? Clients { get; set; } = default!;
 
         private Client? _selectedClient;

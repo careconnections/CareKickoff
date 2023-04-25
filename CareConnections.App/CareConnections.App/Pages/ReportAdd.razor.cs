@@ -25,10 +25,8 @@ namespace CareConnections.App.Pages
         protected string StatusClass = string.Empty;
         protected bool Saved;
 
-        protected override async Task OnInitializedAsync()
-        {
+        protected override async Task OnInitializedAsync() => 
             Client = await ClientDataService.GetClientByIdAsync(int.Parse(ClientId));
-        }
 
         protected async Task HandleValidSubmitAsync()
         {
