@@ -1,12 +1,13 @@
 ﻿using CareConnections.Api.Models;
 using CareConnections.Shared.Domain;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CareConnections.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReportController : Controller
     {
         private readonly IReportRepository _reportRepository;

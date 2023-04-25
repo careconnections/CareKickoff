@@ -1,10 +1,12 @@
 ﻿using CareConnections.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CareConnections.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepository;
