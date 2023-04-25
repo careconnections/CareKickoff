@@ -1,0 +1,63 @@
+﻿@page "/reportadd/{ClientId}"
+
+@using CareConnections.Shared.Domain;
+
+@if (!Saved)
+{
+    <section class="report-add">
+        <h1 class="page-title">New report for @Client?.FirstName @Client?.LastName</h1>
+
+        <EditForm Model="@Report" OnValidSubmit="@HandleValidSubmitAsync" OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary></ValidationSummary>
+
+            <div class="row mb-3">
+                <label for="subject" class="col-form-label col-md-2">Subject: </label>
+                <div class="col-md-8">
+                    <InputText id="subject" class="form-control col-md-8"
+                           @bind-Value="@Report.Subject" placeholder="Enter subject"></InputText>
+                </div>
+                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => Report.Subject)" />
+            </div>
+
+            <div class="row mb-3">
+                <label for="text" class="col-form-label col-md-2">Text: </label>
+                <div class="col-md-8">
+                    <InputText id="text" class="form-control col-md-8"
+                           @bind-Value="@Report.Text" placeholder="Enter content"></InputText>
+                </div>
+                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => Report.Text)" />
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-8 offset-md-2">
+                    <div class="form-check">
+                        <InputCheckbox id="haspriority" class="form-check-input"
+                                   @bind-Value="@Report.HasPriority"></InputCheckbox>
+                        <label class="form-check-label" for="haspriority">
+                            Has Priority
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="careplangoalid" class="col-form-label col-md-2">Careplan Goal ID: </label>
+                <div class="col-md-8">
+                    <InputText id="careplangoalid" class="form-control col-md-8"
+                           @bind-Value="@Report.CarePlanGoalId" placeholder="Enter careplan goal id"></InputText>
+                </div>
+                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => Report.CarePlanGoalId)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary me-1">Save Report</button>
+
+            <a href="@($"reportoverview/{ClientId}")" class="btn btn-primary me-1">Back to overview</a>
+        </EditForm>
+    </section>
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+    <a href="@($"reportoverview/{ClientId}")" class="btn btn-primary me-1">Back to overview</a>
+}

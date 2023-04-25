@@ -1,0 +1,47 @@
+﻿@page "/ReportOverview/{ClientId}"
+@using CareConnections.App.Components
+
+<h2>Report Overview for @Client?.FirstName @Client?.LastName</h2>
+
+@if (Reports == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th>Date</th>
+                <th>Priority</th>
+                <th>Employee</th>
+                <th>Subject</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in Reports)
+            {
+                <tr>
+                    <td>@report.CreatedAt.ToShortDateString()</td>
+                    <td>@report.HasPriority</td>
+                    <td>@report.CreatedBy</td>
+                    <td>@report.Subject</td>
+                    <td>@report.Text</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a href="clientoverview" class="btn btn-primary me-1">
+    Back to overview
+</a>
+<a href="@($"reportadd/{Client?.ClientId}")" class="btn btn-primary me-1">
+    Add Report
+</a>
+<br />
+<br />
+<ProfilePicture>
+    <img class="client-img img-fluid rounded-circle" src="@($"images/{Client?.LastName}.jpg")" />
+</ProfilePicture>
