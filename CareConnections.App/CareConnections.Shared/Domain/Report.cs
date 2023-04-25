@@ -18,8 +18,7 @@ namespace CareConnections.Shared.Domain
 
         public string ClientId { get; set; } = string.Empty;
 
-        [Required]
-        public string CreatedBy { get; set; } = string.Empty;
+        public string? CreatedBy { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; }
     }

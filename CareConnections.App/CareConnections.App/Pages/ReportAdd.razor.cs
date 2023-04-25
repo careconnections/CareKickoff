@@ -1,6 +1,7 @@
 ﻿using CareConnections.App.Services;
 using CareConnections.Shared.Domain;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace CareConnections.App.Pages
 {
@@ -10,6 +11,8 @@ namespace CareConnections.App.Pages
         public IClientDataService ClientDataService { get; set; } = default!;
         [Inject]
         public IReportDataService ReportDataService { get; set; } = default!;
+        [Inject]
+        public AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
 
         [Parameter]
         public string ClientId { get; set; } = string.Empty;
@@ -31,6 +34,9 @@ namespace CareConnections.App.Pages
         {
             Saved = false;
 
+            var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+            Report.CreatedBy = state.User?.Identity?.Name;
             Report.CreatedAt = DateTime.UtcNow;
             Report.ClientId = ClientId;
 

@@ -3,7 +3,7 @@
 <PageTitle>@Title</PageTitle>
 <h2>Client Overview</h2>
 
-@if (Clients == null || Employees == null)
+@if (Clients == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -13,16 +13,9 @@ else
     <div class="row">
         @foreach (var client in Clients)
         {
-            <AuthorizeView>
-                <Authorized>
-                    @if (IsEmployeeAuthorized(context?.User?.Identity?.Name, client.ClientId))
-                    {
-                        <div class="col-12 col-sm-12 col-md-1 col-lg-4 col-xl-3">
-                            <ClientCard Client="client" ClientDetailsClicked="ShowClientDetailsPopup"></ClientCard>
-                        </div>
-                    }
-                </Authorized>
-            </AuthorizeView>
+            <div class="col-12 col-sm-12 col-md-1 col-lg-4 col-xl-3">
+                <ClientCard Client="client" ClientDetailsClicked="ShowClientDetailsPopup"></ClientCard>
+            </div>
         }
     </div>
 }

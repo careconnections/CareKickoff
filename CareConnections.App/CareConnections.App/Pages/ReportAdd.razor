@@ -50,15 +50,6 @@
                 <ValidationMessage class="offset-md-3 col-md-8" For="@(() => Report.CarePlanGoalId)" />
             </div>
 
-            <div class="row mb-3">
-                <label for="createdby" class="col-form-label col-md-2">Created By: </label>
-                <div class="col-md-8">
-                    <InputText id="createdby" class="form-control col-md-8"
-                           @bind-Value="@Report.CreatedBy" placeholder="Enter your first name"></InputText>
-                </div>
-                <ValidationMessage class="offset-md-3 col-md-8" For="@(() => Report.CreatedBy)" />
-            </div>
-
             <button type="submit" class="btn btn-primary me-1">Save Report</button>
 
             <a href="@($"reportoverview/{ClientId}")" class="btn btn-primary me-1">Back to overview</a>
@@ -68,5 +59,5 @@
 else
 {
     <div class="alert @StatusClass">@Message</div>
-    <a href="@($"reportoverview/{ClientId}")" class="btn btn-primary btn-sm me-1">Back to overview</a>
+    <a href="@($"reportoverview/{ClientId}")" class="btn btn-primary me-1">Back to overview</a>
 }
