@@ -1,0 +1,81 @@
+﻿@page "/clientview"
+@page "/clientview/{clientId:int}"
+
+@using CareKickoff.Data
+@inject ClientService ClientsService
+@inject ReportService ReportService
+@inject CareplanService CareplanService
+
+
+@if (client == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="h3">Client @client.FirstName @client.LastName</div>
+    <p>Birthdate: @client.BirthDate.ToShortDateString()</p>
+    <p>Gender: @client.Gender</p>
+    <p>Client id: @client.NativeId</p>
+
+    <br>
+
+    <button name="ToCareplans" class="btn btn-primary" @onclick="OnToCareplans">Careplans</button>
+    <button name="ToReports" class="btn btn-primary" @onclick="OnToReports">Reports</button>
+
+
+    @if (clientViewContent == ClientViewContent.Careplans)
+    {
+
+        <div class="h4">Care plans for @client.FirstName @client.LastName</div>
+        <CareplanOverview clientId="client.NativeId"/>
+
+    }
+    else if (clientViewContent == ClientViewContent.Reports)
+    {
+        <div class="h4">Reports for @client.FirstName @client.LastName</div>
+        <ReportOverview clientId="client.NativeId" />
+    }
+}
+
+@code {
+
+    /* Possible content for the client page */
+    enum ClientViewContent{
+        Careplans,
+        Reports
+    }
+
+    [Parameter]
+    public int clientId { get; set; } = 1;
+
+    private Client client;
+    private Careplan[] carePlansForClient;
+    private Report[] reportsForClient;
+
+    /* Default page content */
+    ClientViewContent clientViewContent = ClientViewContent.Careplans;
+
+    protected override async Task OnInitializedAsync()
+    {
+        client = await ClientsService.GetClientByIdAsync(clientId);
+    }
+
+    protected override async void OnParametersSet()
+    {
+        client             = await ClientsService.GetClientByIdAsync(clientId);
+        carePlansForClient = await CareplanService.GetCarePlansForClientAsync(clientId);
+        reportsForClient   = await ReportService.GetReportsForClientAsync(clientId);
+        base.OnParametersSet();
+    }
+
+    public void OnToReports()
+    {
+        clientViewContent = ClientViewContent.Reports;
+    }
+
+    public void OnToCareplans()
+    {
+        clientViewContent = ClientViewContent.Careplans;
+    }
+}

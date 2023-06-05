@@ -1,0 +1,51 @@
+﻿@page "/clientoverview"
+
+@using CareKickoff.Data
+@inject ClientService ClientsService
+@inject NavigationManager NavigationManager
+
+<h1>Clients</h1>
+
+@if (clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Date of birth</th>
+                <th>Gender</th>
+                <th>id</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in clients)
+            {
+                <tr >
+                    <td><button class="btn btn-primary" @onclick="@(() => NavigationManager.NavigateTo("/clientview/"+@client.NativeId))">View</button></td>
+                    <td>@client.FirstName</td>
+                    <td>@client.LastName</td>
+                    <td>@client.BirthDate.ToShortDateString()</td>
+                    <td>@client.Gender</td>
+                    <td>@client.NativeId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Client[] clients;
+
+    protected override async Task OnInitializedAsync()
+    {
+        clients = await ClientsService.GetAllClientsAsync();
+    }
+
+
+}

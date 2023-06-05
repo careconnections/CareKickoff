@@ -1,0 +1,44 @@
+﻿@page "/employeeoverview"
+
+@using CareKickoff.Data
+@inject EmployeeService EmployeeService
+
+
+@if (employees == null)
+{
+    <p><em>Loading employees...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in employees)
+            {
+                <tr>
+                    <td>@employee.EmployeeId</td>
+                    <td>@employee.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    
+}
+
+@code {
+    [Parameter]
+    public int employeeId { get; set; } = 1;
+
+    private Employee[] employees;
+
+    protected override async Task OnInitializedAsync()
+    {
+        employees = await EmployeeService.GetAllEmployeesAsync();
+    }
+}

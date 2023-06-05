@@ -1,0 +1,47 @@
+@page "/careplan/{clientId:int}"
+
+@using CareKickoff.Data
+@inject CareplanService CareplanService
+
+@if (careplansForClient == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Goals</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var plan in careplansForClient)
+            {
+                <tr>
+                    <td>@plan.DisplayName</td>
+                    <td>
+                        @foreach (CareplanGoal goal in plan.goals)
+                        {
+                            <p>@goal.DisplayName</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    [Parameter]
+    public int clientId { get; set; } = 1;
+
+    private Careplan[] careplansForClient;
+
+    protected override async Task OnInitializedAsync()
+    {
+        careplansForClient = await CareplanService.GetCarePlansForClientAsync(clientId);
+    }
+}

@@ -1,0 +1,48 @@
+@page "/reports/{clientId:int}"
+
+@using CareKickoff.Data
+@inject ReportService ReportService
+
+@if (reportsForClient == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Has priority</th>
+                <th>Created by</th>
+                <th>Creation date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in reportsForClient)
+            {
+                <tr>
+                   <td>@report.Subject</td>
+                   <td>@report.HasPriority</td>
+                   <td>@report.CreatedBy</td>
+                   <td>@report.CreatedAt.ToShortDateString()</td>
+                   <td>@report.Text</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    [Parameter]
+    public int clientId { get; set; } = 1;
+
+    private Report[] reportsForClient;
+
+    protected override async Task OnInitializedAsync()
+    {
+        reportsForClient = await ReportService.GetReportsForClientAsync(clientId);
+    }
+}
