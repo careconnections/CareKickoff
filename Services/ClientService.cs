@@ -1,10 +1,11 @@
+using CareKickoff.Models;
 using CareKickoff.Properties;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace CareKickoff.Data;
 
-public class ClientService
+public class ClientService : IClientService
 
 {
     public Task<Client[]> GetAllClientsAsync()

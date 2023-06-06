@@ -1,9 +1,10 @@
+using CareKickoff.Models;
 using CareKickoff.Properties;
 using Newtonsoft.Json;
 
 namespace CareKickoff.Data;
 
-public class CareplanService
+public class CareplanService : ICareplanService
 {
     public Task<Careplan[]> GetCarePlansForClientAsync(int clientId)
     {

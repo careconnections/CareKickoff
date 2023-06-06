@@ -50,26 +50,26 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="Data\DataStorage\careplans.json" />
-      <Content Remove="Data\DataStorage\clients.json" />
-      <Content Remove="Data\DataStorage\employees.json" />
-      <Content Remove="Data\DataStorage\reports.json" />
+      <Content Remove="Data\careplans.json" />
+      <Content Remove="Data\clients.json" />
+      <Content Remove="Data\employees.json" />
+      <Content Remove="Data\reports.json" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Data\DataStorage\careplans.json">
+      <EmbeddedResource Include="Data\careplans.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Data\DataStorage\clients.json">
+      <EmbeddedResource Include="Data\clients.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
-      <EmbeddedResource Include="Data\DataStorage\employees.json">
+      <EmbeddedResource Include="Data\employees.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
-      <EmbeddedResource Include="Data\DataStorage\reports.json">
+      <EmbeddedResource Include="Data\reports.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
     </ItemGroup>

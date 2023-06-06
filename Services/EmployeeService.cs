@@ -1,9 +1,10 @@
+using CareKickoff.Models;
 using CareKickoff.Properties;
 using Newtonsoft.Json;
 
 namespace CareKickoff.Data;
 
-public class EmployeeService
+public class EmployeeService : IEmployeeService
 {
     public Task<Employee[]> GetAllEmployeesAsync()
     {

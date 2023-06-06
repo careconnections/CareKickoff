@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CareKickoff.Data
+namespace CareKickoff.Models
 {
     public class Report
     {
@@ -14,6 +14,6 @@ namespace CareKickoff.Data
         public string CarePlanGoalId { get; set; }
         public int ClientId { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime CreatedAt{ get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

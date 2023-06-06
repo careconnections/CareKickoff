@@ -1,9 +1,10 @@
+using CareKickoff.Models;
 using CareKickoff.Properties;
 using Newtonsoft.Json;
 
 namespace CareKickoff.Data;
 
-public class ReportService
+public class ReportService : IReportService
 {
     public Task<Report[]> GetReportsForClientAsync(int clientId)
     {

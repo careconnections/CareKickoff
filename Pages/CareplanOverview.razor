@@ -1,6 +1,7 @@
 @page "/careplan/{clientId:int}"
 
 @using CareKickoff.Data
+@using CareKickoff.Models;
 @inject CareplanService CareplanService
 
 @if (careplansForClient == null)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CareKickoff.Data
+namespace CareKickoff.Models
 {
     public class CareplanGoal
     {
